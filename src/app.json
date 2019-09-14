@@ -1,18 +1,7 @@
 {
     "pages": [
-        "pages/login/index",
-        "pages/home/index",
-        "pages/report/month/index",
-        "pages/mine/info/index",
-        "pages/record/result/index",
-        "pages/mine/index",
-        "pages/journal/index",
-        "pages/record/index",
-        "pages/bluetooth/transfer/index",
-        "pages/bluetooth/explain/index",
-        "pages/bluetooth/added/index",
-        "pages/bluetooth/index",
-        "pages/report/week/index"
+        "pages/puzzle/index",
+        "pages/login/index"
     ],
     "window": {
         "backgroundTextStyle": "light",
@@ -24,32 +13,5 @@
         "scope.userLocation": {
             "desc": "你的位置信息将用于小程序位置接口的效果展示"
         }
-    },
-    "tabBar": {
-        "color": "#999",
-        "selectedColor": "#58b7ff",
-        "backgroundColor": "#fff",
-        "borderStyle": "black",
-        "position": "bottom",
-        "list": [
-            {
-                "pagePath": "pages/home/index",
-                "text": "首页",
-                "iconPath": "assets/images/tabbar-home-selected-icon.png",
-                "selectedIconPath": "assets/images/tabbar-home-selected-icon.png"
-            },
-            {
-                "pagePath": "pages/journal/index",
-                "text": "血糖日志",
-                "iconPath": "assets/images/tabbar-journal-icon.png",
-                "selectedIconPath": "assets/images/tabbar-journal-selected-icon.png"
-            },
-            {
-                "pagePath": "pages/mine/index",
-                "text": "个人中心",
-                "iconPath": "assets/images/tabbar-mine-icon.png",
-                "selectedIconPath": "assets/images/tabbar-mine-icon.png"
-            }
-        ]
     }
 }

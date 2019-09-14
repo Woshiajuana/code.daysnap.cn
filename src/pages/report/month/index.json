@@ -1,8 +1,0 @@
-{
-
-    "navigationBarTextStyle": "black",
-    "navigationBarBackgroundColor": "#fff",
-    "usingComponents": {
-        "ff-canvas": "/components/f2-canvas/index"
-    }
-}

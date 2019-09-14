@@ -1,4 +1,4 @@
-import './project.config.json'
+// import './project.config.json'
 import './app.json'
 import './app.scss'
 import './wxs/filter.wxs'
