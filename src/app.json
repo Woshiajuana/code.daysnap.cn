@@ -1,7 +1,8 @@
 {
     "pages": [
-        "pages/puzzle/index",
-        "pages/login/index"
+        "pages/home/index",
+        "pages/login/index",
+        "pages/puzzle/index"
     ],
     "window": {
         "backgroundTextStyle": "light",

@@ -1,0 +1,21 @@
+@import '../../assets/scss/define';
+
+page,
+.wrap{
+    @extend %w100;
+    @extend %h100;
+}
+.table{
+    @extend %pr;
+    @extend %oh;
+    @extend %w100;
+    @extend %h100;
+}
+.tr{
+    //@extend %pr;
+}
+.td{
+    @extend %pa;
+    @extend %bsb;
+    border: 1px solid red;
+}
