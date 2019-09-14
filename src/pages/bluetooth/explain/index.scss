@@ -1,0 +1,71 @@
+@import '../../../assets/scss/define';
+
+page{
+    @extend %h100;
+    background-color: #f3efc4;
+}
+.wrap{
+    @extend %df;
+    @extend %fdc;
+    @extend %aic;
+    @extend %c3;
+    @extend %h100;
+}
+
+.header-section{
+    @extend %df;
+    @extend %aic;
+    @extend %fdc;
+    @extend %jcc;
+    font-size: j(30);
+    color: #6c66ce;
+    height: j(156);
+    line-height: 1.5;
+}
+.explain-section{
+    @extend %df;
+    @extend %aic;
+    @extend %jcc;
+    background-color: #fff;
+    border-radius: j(30);
+    width: j(630);
+    height: j(665);
+}
+.explain-icon{
+    @extend %db;
+    width: j(568);
+    height: j(600);
+}
+.button{
+    @extend %cp;
+    @extend %df;
+    @extend %aic;
+    @extend %jcc;
+    @extend %cfff;
+    width: j(245);
+    height: j(84);
+    border-radius: j(42);
+    background-color: #6c66ce;
+    margin-top: j(48);
+}
+
+.footer-section{
+    @extend %df;
+    @extend %fdc;
+    @extend %aic;
+    padding: j(20) 0 j(45);
+
+    .prompt{
+        font-size: j(18);
+        color: #6c66ce;
+    }
+    .link{
+        @extend %df;
+        @extend %cp;
+        margin-top: j(10);
+        font-size: j(28);
+        color: #ff6600;
+        line-height: j(40);
+        border-bottom: 1px #ff6600 solid;
+    }
+}

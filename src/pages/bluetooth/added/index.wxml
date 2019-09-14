@@ -1,0 +1,58 @@
+<!--index.wxml-->
+<view class="wrap">
+
+    <image class="bg" mode="widthFix" src="../../../assets/images/box-bg.jpg"></image>
+
+    <div class="header-section">
+        <text>{{objBlueTooth ? '已发现1个设备，点击绑定' : '寻找设备中，请耐心等待...'}}</text>
+    </div>
+
+    <view class="search-section"
+          hidden="{{!!objBlueTooth}}">
+        <view class="search-inner">
+            <view class="search-ring search-bg"></view>
+            <view class="search-ring search-bg"></view>
+            <view class="search-ring search-bg"></view>
+            <view class="search-ring search-border"></view>
+            <view class="search-ring search-border"></view>
+            <view class="search-ring search-border"></view>
+            <view class="search-ring search-main">
+                <image src="../../../assets/images/record-main-bg.png" class="search-main-bg"></image>
+            </view>
+        </view>
+    </view>
+
+    <view class="explain-section"
+          hidden="{{!!objBlueTooth}}">
+        <text class="explain-title">请确保设备在手机旁边并且开手机</text>
+        <text>如有问题，您可拨打罗氏客户关爱热线</text>
+        <text>· 800 820 2777（固话）</text>
+        <text>· 400 820 2777（手机）</text>
+        <text class="explain-sub-prompt">工作时间每天8:00-20:00（法定节假日除外）</text>
+    </view>
+
+
+    <view class="device-section"
+          hidden="{{!objBlueTooth}}">
+        <image class="device-icon" src="../../../assets/images/device-bg.jpg"></image>
+    </view>
+
+    <text class="search-name" hidden="{{!objBlueTooth}}">{{objBlueTooth.name}} {{objBlueTooth.deviceId}}</text>
+
+    <view class="search-added"
+          hidden="{{!objBlueTooth}}"
+          bindtap="handlePairRoche">
+        <text>绑定</text>
+    </view>
+
+    <view class="flex"></view>
+
+    <view class="footer-section">
+        <text class="prompt">部分安卓机型，无法正常使用蓝牙连接</text>
+        <view class="link"
+              data-url="record_index"
+              bindtap="handleJump">
+            <text>点击前往手动记录</text>
+        </view>
+    </view>
+</view>

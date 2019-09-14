@@ -1,0 +1,218 @@
+<!--index.wxml-->
+<view class="wrap">
+
+    <image class="bg" mode="widthFix" src="../../../assets/images/box-bg.jpg"></image>
+
+    <view class="top-half">
+
+        <view class="header-section">
+            <image class="header-icon" src="../../../assets/images/7-icon.png"></image>
+            <view class="header-inner">
+                <text class="header-title">一周血糖管理周报</text>
+                <text class="header-sub-title">坚持30天养成测糖好习惯</text>
+            </view>
+        </view>
+
+        <view class="operate-section">
+            <text class="operate-title">血糖周报</text>
+            <view class="operate-inner">
+                <view class="operate-btn"
+                      data-count="-7"
+                      bindtap="handlePreOrNext">
+                    <text>上一周</text>
+                </view>
+                <text class="operate-text">{{vSTime2}} - {{vETime2}}</text>
+                <view class="operate-btn"
+                      data-count="7"
+                      bindtap="handlePreOrNext">
+                    <text>下一周</text>
+                </view>
+            </view>
+        </view>
+
+        <view class="table-section">
+            <view class="table-head">
+                <image class="table-icon" src="../../../assets/images/jihua-icon.png"></image>
+                <text class="table-title">本周血糖</text>
+                <view class="table-status-group">
+                    <view class="table-status-cell down">
+                        <image class="table-status-icon" src="../../../assets/images/down-icon.png"></image>
+                        <text>偏低</text>
+                    </view>
+                    <view class="table-status-cell nor">
+                        <image class="table-status-icon" src="../../../assets/images/nor-icon.png"></image>
+                        <text>正常</text>
+                    </view>
+                    <view class="table-status-cell up">
+                        <image class="table-status-icon" src="../../../assets/images/up-icon.png"></image>
+                        <text>偏高</text>
+                    </view>
+                </view>
+            </view>
+            <view class="table-table">
+                <view class="table-tr">
+                    <view class="table-td"></view>
+                    <view class="table-td"
+                          wx:for="{{base$.arrWeek}}"
+                          wx:key="item"
+                    ><text>{{item}}</text></view>
+                </view>
+                <view class="table-tr"
+                      wx:for="{{arrArrPlan}}"
+                      wx:for-item="arrPlan"
+                      wx:for-index="arrPlanIndex"
+                      wx:key="arrPlan">
+                    <view class="table-td {{item.type}}"
+                          wx:for="{{arrPlan}}"
+                          wx:key="item">
+                        <text wx:if="{{index === 0}}">{{base$.arrStage[arrPlanIndex]}}</text>
+                        <text wx:elif="{{item}}">{{item.Bloodsugar}}</text>
+                    </view>
+                </view>
+            </view>
+        </view>
+
+        <text class="top-summary-text">{{weekReport.HaveReport ? weekReport.MonitorSummary : isCurWeek ? '您的周报将于下周一生成，请继续坚持定期测糖的好习惯哦！' : '您的监测频率过低，无法生成周报'}}</text>
+
+    </view>
+
+    <view class="main-half">
+
+        <block wx:if="{{weekReport.HaveReport}}">
+
+            <view class="times-section">
+
+                <view class="times-summary">
+                    <view class="times-prompt">
+                        <text>本周总计</text>
+                        <text>测糖次数</text>
+                    </view>
+                    <text class="times-number">{{weekReport.TestSugarTimes}}</text>
+                    <text class="times-unit">次</text>
+                </view>
+
+                <view class="times-info">
+                    <view class="times-info-item nor">
+                        <view class="times-label">
+                            <text>正常次数</text>
+                        </view>
+                        <view class="times-value">
+                            <text class="times-value-text">{{weekReport.NormalSugarTimes}}</text>
+                            <text class="times-value-unit">次</text>
+                        </view>
+                    </view>
+                    <view class="times-info-item down">
+                        <view class="times-label">
+                            <text>偏低次数</text>
+                        </view>
+                        <view class="times-value">
+                            <text class="times-value-text">{{weekReport.LowSugarTimes}}</text>
+                            <text class="times-value-unit">次</text>
+                        </view>
+                    </view>
+                    <view class="times-info-item up">
+                        <view class="times-label">
+                            <text>升高次数</text>
+                        </view>
+                        <view class="times-value">
+                            <text class="times-value-text">{{weekReport.HighSugarTimes}}</text>
+                            <text class="times-value-unit">次</text>
+                        </view>
+                    </view>
+                </view>
+
+            </view>
+
+            <view class="details-section">
+                <view class="details-cell nor">
+                    <view class="details-title">
+                        <text>空腹或餐前血糖</text>
+                        <view class="details-title-image">
+                            <image class="details-title-icon" src="../../../assets/images/kongfu-icon.png"></image>
+                        </view>
+                    </view>
+                    <view class="details-number">
+                        <text>{{weekReport.AvgFastingBeforeVal}}</text>
+                        <view class="details-type"><text>平均</text></view>
+                    </view>
+                    <view class="details-prompt">
+                        <text>{{weekReport.FastingBeforeReport}}</text>
+                    </view>
+                    <view class="details-suggest"
+                          wx:if="{{weekReport.FastingBeforeDesc}}">
+                        <text>建议：{{weekReport.FastingBeforeDesc}}</text>
+                    </view>
+                </view>
+                <view class="details-cell up">
+                    <view class="details-title">
+                        <text>餐后血糖</text>
+                        <view class="details-title-image">
+                            <image class="details-title-icon" src="../../../assets/images/yinshi-icon2.png"></image>
+                        </view>
+                    </view>
+                    <view class="details-number">
+                        <text>{{weekReport.AvgAfterVal}}</text>
+                        <view class="details-type"><text>平均</text></view>
+                    </view>
+                    <view class="details-prompt">
+                        <text>{{weekReport.AfterReport}}</text>
+                    </view>
+                    <view class="details-suggest"
+                          wx:if="{{weekReport.AfterDesc}}">
+                        <text>建议：{{weekReport.AfterDesc}}</text>
+                    </view>
+                </view>
+                <view class="details-cell down">
+                    <view class="details-title">
+                        <text>低血糖</text>
+                        <view class="details-title-image">
+                            <image class="details-title-icon" src="../../../assets/images/xiajiang-icon.png"></image>
+                        </view>
+                    </view>
+                    <view class="details-number">
+                        <text>{{weekReport.AvgLowVal}}</text>
+                        <view class="details-type"><text>平均</text></view>
+                    </view>
+                    <view class="details-prompt">
+                        <text>{{weekReport.LowReport}}</text>
+                    </view>
+                    <view class="details-suggest"
+                          wx:if="{{weekReport.LowDesc}}">
+                        <text>建议：{{weekReport.LowDesc}}</text>
+                    </view>
+                </view>
+                <view class="details-cell red">
+                    <view class="details-title">
+                        <text>血糖波动</text>
+                        <view class="details-title-image">
+                            <image class="details-title-icon" src="../../../assets/images/bodong-icon.png"></image>
+                        </view>
+                    </view>
+                    <view class="details-number">
+                        <text>{{weekReport.AvgVal}}</text>
+                        <view class="details-type"><text>整体</text></view>
+                    </view>
+                    <view class="details-prompt">
+                        <text>{{weekReport.WholeReport}}</text>
+                    </view>
+                </view>
+            </view>
+        </block>
+
+        <view class="more-section">
+            <view class="more-item">
+                <image class="more-icon" src="../../../assets/images/yishengguwen-icon.png"></image>
+                <text class="more-title">健康顾问</text>
+                <text class="more-text">关注罗氏血糖仪官方微信</text>
+                <text class="more-text">获取更多控糖秘籍！</text>
+            </view>
+            <view class="more-item">
+                <image class="more-icon" src="../../../assets/images/erweima-icon.jpg"></image>
+                <text class="more-text">关注罗氏血糖仪官方微信</text>
+                <text class="more-text">获取更多控糖秘籍！</text>
+            </view>
+        </view>
+
+    </view>
+
+</view>

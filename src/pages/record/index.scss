@@ -1,0 +1,269 @@
+@import '../../assets/scss/define';
+
+page{
+    @extend %h100;
+    background-color: #f8f3b9;
+}
+.wrap{
+    @extend %df;
+    @extend %fdc;
+    @extend %bsb;
+    @extend %aic;
+    padding-top: j(20);
+}
+
+.blood-section{
+    @extend %df;
+    @extend %aic;
+    @extend %fdc;
+    padding-top: j(25);
+}
+.blood-title{
+    font-size: j(30);
+    color: #99cccc;
+    margin-bottom: j(65);
+}
+.blood-inner{
+    @extend %pr;
+    width: j(300);
+    height: j(300);
+}
+.blood-ring{
+    @extend %w100;
+    @extend %h100;
+    @extend %bsb;
+    @extend %pa;
+    border-radius: 50%;
+    &:nth-child(1) {
+        top: j(-50);
+    }
+    &:nth-child(2) {
+        top: 0;
+        left: j(-50);
+    }
+    &:nth-child(3) {
+        top: 0;
+        right: j(-50);
+    }
+    &:nth-child(4) {
+        top: j(-30);
+        left: j(-10);
+    }
+    &:nth-child(5) {
+        top: j(-20);
+        right: j(-10);
+    }
+    &:nth-child(6) {
+        bottom: j(-30);
+        right: j(-10);
+    }
+    &.blood-main{
+        @extend %t0;
+        @extend %l0;
+    }
+}
+.blood-bg{
+    background-color: #99cccc;
+    opacity: 0.2;
+}
+.blood-border{
+    border: j(2) solid #99cccc;
+}
+.blood-main{
+    @extend %df;
+    @extend %aic;
+    @extend %fdc;
+    @extend %jcc;
+    @extend %cfff;
+    background-color: #99cccc;
+}
+.blood-number{
+    font-size: j(110);
+}
+.blood-unit{
+    font-size: j(24);
+}
+.blood-btn{
+    @extend %pa;
+    @extend %cp;
+    @extend %t50;
+    @extend %df;
+    @extend %aic;
+    @extend %jcc;
+    line-height: 1.5;
+    border-radius: 50%;
+    font-size: j(60);
+    margin-top: j(-30);
+    color: #99cccc;
+    width: j(60);
+    height: j(60);
+    border: j(1) solid #99cccc;
+    &.blood-reduce{
+        left: j(-160);
+    }
+    &.blood-added{
+        right: j(-160);
+    }
+    .blood-btn-text{
+        margin-bottom: j(8);
+    }
+}
+
+.ruler-section{
+    @extend %boxs;
+    margin-top: j(75);
+    background-color: #fff;
+    width: j(630);
+    height: j(84);
+    border-radius: j(42);
+}
+
+/*标尺*/
+.ruler,
+.ruler-section{
+    @extend %w100;
+    @extend %pr;
+    @extend %bsb;
+    height: j(110);
+    white-space: nowrap;
+}
+.rule-type{
+    @extend %pa;
+    @extend %t50;
+    @extend %l50;
+    width: j(150);
+    height: j(100);
+    margin-top: -50rpx;
+    margin-left: -72rpx;
+}
+.rule-inner{
+    @extend %dib;
+    @extend %h100;
+}
+.rule-item{
+    @extend %pr;
+    @extend %dib;
+    @extend %bsb;
+    width: j(25);
+    height: j(21);
+    &.rule-item-value{
+        .rule-item-sign{
+            height: j(21);
+        }
+    }
+    &:last-child{
+        width: j(1);
+    }
+}
+.rule-null-item{
+    @extend %dib;
+    width: 50%;
+    height: j(21);
+}
+.rule-item-sign{
+    @extend %pa;
+    @extend %t0;
+    @extend %l0;
+    height: j(13);
+    width: j(1);
+    background-color: #28aeed;
+}
+.rule-item-value-text{
+    @extend %pa;
+    @extend %l0;
+    font-size: j(26);
+    color: #28aeed;
+    top: j(30);
+    margin-left: j(1);
+    transform: translate3d(-50%, 0, 0);
+}
+
+.stage-section{
+    width: j(630);
+    margin-top: j(20);
+    white-space: nowrap;
+    .stage-item:last-child{
+        margin-right: 0;
+    }
+}
+.stage-item{
+    @extend %cp;
+    @extend %cfff;
+    @extend %bsb;
+    @extend %pr;
+    @extend %h100;
+    @extend %dib;
+    @extend %tac;
+    @extend %boxs;
+    margin-right: j(30);
+    width: j(94);
+    font-size: j(28);
+    height: j(60);
+    line-height: j(60);
+    border-radius: j(30);
+    background-color: #99cccc;
+    &.active{
+        color: #6c66ce;
+        background-color: #ffcc00;
+    }
+}
+
+.form-section{
+    @extend %boxs;
+    @extend %df;
+    @extend %fdc;
+    @extend %bsb;
+    width: j(630);
+    margin-top: j(20);
+    background-color: #fff;
+    border-radius: j(30);
+    padding: j(45) j(64);
+}
+.form-title{
+    font-size: j(30);
+    color: #33cc00;
+}
+.form-item{
+    @extend %df;
+    @extend %aic;
+    border-bottom: j(1) #807ad5 solid;
+    font-size: j(24);
+    color: #6c66ce;
+}
+.form-label{;
+    //font-size: j(24);
+    //color: #6c66ce;
+}
+.form-value{
+    @extend %df;
+    @extend %df1;
+    @extend %aic;
+    height: j(55);
+    justify-content: flex-end;
+    picker{
+        //@extend %df1;
+    }
+}
+.form-input{
+    @extend %w100;
+    @extend %h100;
+    @extend %tar;
+    line-height: j(55);
+    font-size: j(24);
+    color: #6c66ce;
+}
+
+.form-button{
+    @extend %cp;
+    @extend %df;
+    @extend %cfff;
+    @extend %aic;
+    @extend %boxs;
+    @extend %jcc;
+    margin: j(35) auto 0;
+    width: j(200);
+    height: j(84);
+    border-radius: j(42);
+    font-size: j(40);
+    background-color: #99cccc;
+}

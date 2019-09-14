@@ -1,0 +1,15 @@
+<view class="wrap">
+    <view class="inner" hidden="{{isLoading}}">
+        <image class="bg" mode="widthFix" src="../../assets/images/box-bg.jpg"></image>
+        <view class="content">
+            <text class="title">控糖顾问</text>
+            <text class="prompt">轻松管理您的每一次测糖</text>
+        </view>
+        <button
+            class="g-button button"
+            open-type="getUserInfo"
+            bindgetuserinfo="handleGetUser"
+        >立即使用</button>
+    </view>
+    <loading hidden="{{!isLoading}}">加载中</loading>
+</view>

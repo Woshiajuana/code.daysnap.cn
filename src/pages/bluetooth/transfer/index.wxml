@@ -1,0 +1,39 @@
+<!--index.wxml-->
+<view class="wrap">
+
+    <image class="bg" mode="widthFix" src="../../../assets/images/box-bg.jpg"></image>
+
+    <view class="header-section">
+        <text>罗氏血糖仪 / Preform Cconnect</text>
+        <text>传输到小程序的方法说明</text>
+    </view>
+
+    <view class="explain-section"
+         hidden="{{isSyncLoading}}">
+        <image class="explain-icon" src="../../../assets/images/shuoming-bg.jpg"></image>
+    </view>
+
+    <view class="progress-section"
+          hidden="{{!isSyncLoading}}">
+        <image class="progress-icon" src="../../../assets/images/chuanshu-icon.png"></image>
+        <view class="progress">
+            <view class="progress-item {{numCurIndex === index && 'active'}}" wx:for="{{9}}" wx:key="item"></view>
+        </view>
+    </view>
+
+    <view class="button"
+          bindtap="handleSync">
+        <text>点击同步</text>
+    </view>
+
+    <view class="flex"></view>
+
+    <view class="footer-section">
+        <text class="prompt">部分安卓机型，无法正常使用蓝牙连接</text>
+        <view class="link"
+              data-url="record_index"
+              bindtap="handleJump">
+            <text>点击前往手动记录</text>
+        </view>
+    </view>
+</view>

@@ -1,0 +1,258 @@
+@import '../../assets/scss/define';
+
+page{
+    @extend %h100;
+    background-color: #f8f3b9;
+}
+.wrap{
+    //@extend %df;
+    @extend %fdc;
+    @extend %bsb;
+    //@extend %aic;
+    @extend %c3;
+    @extend %h100;
+    padding-top: j(20);
+}
+
+.header-section{
+    @extend %df;
+    @extend %aic;
+    @extend %ma;
+    @extend %jcs;
+    width: j(630);
+}
+.user-group{
+    @extend %df;
+    @extend %aic;
+    height: j(68);
+    border-radius: j(50);
+    padding: 0 j(20) 0 j(10);
+    background-color: #fff;
+    font-size: j(24);
+}
+.user-avatar{
+    width: j(65);
+    height: j(65);
+    border-radius: 50%;
+    background-color: #ddd;
+    margin-right: j(20);
+}
+.user-content{
+    @extend %df1;
+}
+.user-nickname{
+    @extend %df1;
+    @extend %oh;
+    color: #2b5d82;
+}
+.user-prompt{
+    color: #a9a9a9;
+    &:last-child{
+        font-size: j(18);
+    }
+}
+.blue-tooth-button{
+    @extend %pr;
+    @extend %df;
+    @extend %aic;
+    @extend %jcc;
+    @extend %cp;
+    @extend %cfff;
+    height: j(46);
+    width: j(144);
+    font-size: j(24);
+    border-radius: j(23);
+    background-color: #326394;
+    &:before{
+        @extend %pa;
+        left: j(-30);
+        content: '';
+        width: j(16);
+        height: j(16);
+        border-radius: 50%;
+        background-color: #2b5d82;
+    }
+}
+
+.blood-section{
+    @extend %df;
+    @extend %aic;
+    @extend %fdc;
+    padding-top: j(155);
+}
+.blood-inner{
+    @extend %pr;
+    width: j(300);
+    height: j(300);
+}
+.blood-ring{
+    @extend %w100;
+    @extend %h100;
+    @extend %bsb;
+    @extend %pa;
+    border-radius: 50%;
+    &:nth-child(1) {
+        top: j(-50);
+    }
+    &:nth-child(2) {
+        top: 0;
+        left: j(-50);
+    }
+    &:nth-child(3) {
+        top: 0;
+        right: j(-50);
+    }
+    &:nth-child(4) {
+        top: j(-30);
+        left: j(-10);
+    }
+    &:nth-child(5) {
+        top: j(-20);
+        right: j(-10);
+    }
+    &:nth-child(6) {
+        bottom: j(-30);
+        right: j(-10);
+    }
+    &.blood-main{
+        @extend %t0;
+        @extend %l0;
+    }
+}
+.blood-bg{
+    background-color: #99cccc;
+    opacity: 0.2;
+}
+.blood-border{
+    border: j(2) solid #99cccc;
+}
+.blood-main{
+    @extend %df;
+    @extend %aic;
+    @extend %fdc;
+    @extend %jcc;
+    @extend %cfff;
+    background-color: #99cccc;
+}
+.blood-number{
+    font-size: j(110);
+}
+.blood-unit{
+    font-size: j(24);
+}
+.blood-summary{
+    margin-top: j(65);
+    font-size: j(24);
+    color: #326394;
+}
+
+.button-section{
+    @extend %df;
+    @extend %aic;
+    @extend %fdc;
+    @extend %jcc;
+    margin-top: j(125);
+}
+.button-item{
+    @extend %df;
+    @extend %aic;
+    @extend %jcc;
+    @extend %cp;
+    @extend %cfff;
+    background-color: #99cccc;
+    height: j(84);
+    width: j(400);
+    border-radius: j(42);
+    margin-bottom: j(30);
+    font-size: j(40);
+}
+
+.footer-section{
+    @extend %df;
+    @extend %aic;
+    @extend %jcc;
+    @extend %w100;
+    @extend %l0;
+    @extend %b0;
+    @extend %r0;
+    height: j(98);
+    background-color: #fff;
+    position: absolute !important;
+}
+.button-link{
+    @extend %df;
+    @extend %aic;
+    @extend %jcc;
+    @extend %fdc;
+    @extend %cp;
+    margin: 0 j(40);
+    font-size: j(18);
+    color: #326394;
+    border: none;
+}
+.button-link-icon{
+    margin-bottom: j(10);
+    width: j(46);
+    height: j(46);
+}
+
+.popup-confirm{
+    @extend %pf;
+    @extend %df;
+    @extend %aic;
+    @extend %jcc;
+    @extend %w100;
+    @extend %h100;
+    @extend %t0;
+    @extend %l0;
+    @extend %r0;
+    @extend %b0;
+    background-color: rgba(0,0,0,.3);
+}
+.popup-inner{
+    @extend %df;
+    @extend %aic;
+    @extend %fdc;
+    @extend %jcc;
+    @extend %oh;
+    width: j(630);
+    background-color: #fff;
+    border-radius: j(30);
+    padding-top: j(50);
+}
+.popup-icon{
+    width: j(125);
+    height: j(125);
+    border-radius: 50%;
+}
+.popup-title{
+    margin-top: j(50);
+    font-size: j(48);
+    color: #6c66ce;
+}
+.popup-prompt{
+    margin-top: j(24);
+    font-size: j(30);
+    color: #6c66ce;
+}
+.popup-button-group{
+    @extend %w100;
+    @extend %df;
+    @extend %aic;
+    margin-top: j(36);
+}
+.popup-button-item{
+    @extend %cp;
+    @extend %df1;
+    @extend %df;
+    @extend %aic;
+    @extend %jcc;
+    font-size: j(48);
+    color: #6c66ce;
+    height: j(120);
+    border-top: j(1) #6c66ce solid;
+    border-right: j(1) #6c66ce solid;
+    &:last-child{
+        border-right: none;
+    }
+}

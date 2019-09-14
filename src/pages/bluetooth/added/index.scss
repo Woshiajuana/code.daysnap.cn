@@ -1,0 +1,209 @@
+@import '../../../assets/scss/define';
+
+page{
+    @extend %h100;
+    background-color: #fbf5b3;
+}
+.wrap{
+    @extend %df;
+    @extend %fdc;
+    @extend %aic;
+    @extend %h100;
+}
+
+.header-section{
+    @extend %df;
+    @extend %aic;
+    @extend %jcc;
+    @extend %w100;
+    height: j(64);
+    font-size: j(30);
+    color: #6c66ce;
+    background-color: #fefceb;
+}
+
+.search-section{
+    @extend %df;
+    @extend %aic;
+    @extend %fdc;
+    padding: j(118) 0;
+}
+.search-inner{
+    @extend %pr;
+    width: j(300);
+    height: j(300);
+}
+.search-ring{
+    @extend %w100;
+    @extend %h100;
+    @extend %bsb;
+    @extend %pa;
+    border-radius: 50%;
+    &:nth-child(1) {
+        top: j(-50);
+    }
+    &:nth-child(2) {
+        top: 0;
+        left: j(-50);
+    }
+    &:nth-child(3) {
+        top: 0;
+        right: j(-50);
+    }
+    &:nth-child(4) {
+        top: j(-30);
+        left: j(-10);
+    }
+    &:nth-child(5) {
+        top: j(-20);
+        right: j(-10);
+    }
+    &:nth-child(6) {
+        bottom: j(-30);
+        right: j(-10);
+    }
+    &.search-main{
+        @extend %t0;
+        @extend %l0;
+    }
+}
+.search-bg{
+    background-color: #24bd00;
+    opacity: 0.2;
+}
+.search-border{
+    border: j(2) solid #24bd00;
+}
+.search-main{
+    @extend %df;
+    @extend %pr;
+    @extend %aic;
+    @extend %fdc;
+    @extend %jcc;
+    @extend %cfff;
+    background-color: #24bd00;
+    //background: conic-gradient(#9ED110, #24bd00);
+    animation: rotate360 1s linear infinite;
+    -webkit-animation: rotate360 1s linear infinite;
+    .search-main-bg{
+        @extend %pa;
+        @extend %t0;
+        @extend %l0;
+        @extend %r0;
+        @extend %b0;
+        width: j(300);
+        height: j(300);
+    }
+}
+
+@-webkit-keyframes rotate360 {
+    0%{
+        -webkit-transform: rotate(0deg);
+        transform: rotate(0deg);
+    }
+    100%{
+        -webkit-transform: rotate(360deg);
+    }
+}
+@keyframes rotate360 {
+    0%{
+        -webkit-transform: rotate(0deg);
+        transform: rotate(0deg);
+    }
+    100%{
+        -webkit-transform: rotate(360deg);
+        transform: rotate(360deg);
+    }
+}
+
+.search-number{
+    font-size: j(36);
+}
+.search-unit{
+    font-size: j(24);
+}
+.search-time{
+    font-size: j(24);
+}
+.search-summary{
+    margin-top: j(80);
+    font-size: j(24);
+    color: #000;
+}
+
+.explain-section{
+    @extend %df;
+    @extend %aic;
+    @extend %fdc;
+    @extend %jcc;
+    background-color: #fff;
+    border-radius: j(30);
+    width: j(630);
+    height: j(260);
+    font-size: j(28);
+    color: #6c66ce;
+    line-height: 1.6;
+}
+.explain-title{
+    font-size: j(30);
+    color: #33cc00;
+    margin-bottom: j(20);
+}
+.explain-sub-prompt{
+    font-size: j(16);
+    color: #999;
+}
+
+.device-section{
+    @extend %df;
+    @extend %aic;
+    @extend %jcc;
+    width: j(630);
+    height: j(610);
+    background-color: #fff;
+    border-radius: j(30);
+    margin-top: j(80);
+}
+.device-icon{
+    width: j(526);
+    height: j(538);
+}
+.search-name{
+    margin-top: j(50);
+    font-size: j(30);
+    color: #6c66ce;
+}
+.search-added{
+    @extend %df;
+    @extend %aic;
+    @extend %jcc;
+    @extend %cfff;
+    @extend %cp;
+    font-size: j(40);
+    height: j(84);
+    border-radius: j(42);
+    margin-top: j(70);
+    width: j(200);
+    background-color: #6c66ce;
+}
+
+.footer-section{
+    @extend %df;
+    @extend %fdc;
+    @extend %aic;
+    padding: j(20) 0 j(45);
+
+    .prompt{
+        font-size: j(18);
+        color: #6c66ce;
+    }
+    .link{
+        @extend %df;
+        @extend %cp;
+        margin-top: j(10);
+        font-size: j(28);
+        color: #ff6600;
+        line-height: j(40);
+        border-bottom: 1px #ff6600 solid;
+    }
+}
