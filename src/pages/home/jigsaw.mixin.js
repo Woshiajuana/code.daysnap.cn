@@ -1,7 +1,8 @@
 
 // 默认参数
 const DEFAULT_OPTIONS = {
-    level: 2,  // 级别
+    xAxis: 3,
+    yAxis: 3,
     url: 'https://img1.mukewang.com/szimg/5d1032ab08719e0906000338.jpg', // 图片
 };
 
@@ -25,17 +26,18 @@ export default {
 
     init (options = {}) {
         let {
-            level,
+            xAxis,
+            yAxis,
             url,
         } = Object.assign({}, DEFAULT_OPTIONS, options);
-        numWidth = windowWidth / level;
-        numHeight = windowHeight / level;
+        numWidth = windowWidth / xAxis;
+        numHeight = windowHeight / yAxis;
 
         // 初始化图片
         let arrArrJigSaw = [];
-        for (let x = 0; x < level; x++) {
+        for (let x = 0; x < yAxis; x++) {
             arrArrJigSaw[x] = [];
-            for (let y = 0; y < level; y++) {
+            for (let y = 0; y < xAxis; y++) {
                 arrArrJigSaw[x].push({
                     width: numWidth,
                     height: numHeight,
@@ -72,7 +74,7 @@ export default {
             let a = [];
             for (let i = 0, len = arr.length; i < len; i ++) {
                 a.push(arr[i]);
-                if (i % level === level - 1) {
+                if (i % xAxis === xAxis - 1) {
                     arrArrJigSaw.push(a);
                     a = [];
                 }
