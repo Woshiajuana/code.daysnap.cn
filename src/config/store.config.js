@@ -1,5 +1,0 @@
-
-export default {
-    $BLUE_TOOTH_DEVICE_ID_LIST: '$BLUE_TOOTH_DEVICE_ID_LIST',
-    $BLUE_TOOTH_DATA: '$BLUE_TOOTH_DATA',
-}
