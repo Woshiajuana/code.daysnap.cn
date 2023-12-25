@@ -4,6 +4,11 @@ import { defineConfig } from 'vitepress'
 export default defineConfig({
   title: "Code",
   description: "code daysnap",
+  head: [
+    ['link', { rel: 'icon', href: '/favicon.ico' }],
+  ],
+  base: '/',
+  srcDir: './src',
   themeConfig: {
     // https://vitepress.dev/reference/default-theme-config
     nav: [
