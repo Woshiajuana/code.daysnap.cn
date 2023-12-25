@@ -9,6 +9,8 @@ export default defineConfig({
   ],
   base: '/',
   srcDir: './src',
+  outDir: './.vitepress/dist', // 默认输出
+  assetsDir: 'assets',
   themeConfig: {
     // https://vitepress.dev/reference/default-theme-config
     nav: [
