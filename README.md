@@ -32,3 +32,8 @@ npm run docs:dev
 ```sh
 npm i vitepress-plugin-sandpack -D
 ```
+
+## 遇到的问题
+
+### algolia 搜索问题
+- https://github.com/vuejs/vitepress/issues/1935
