@@ -25,6 +25,10 @@ export default defineConfig({
   
   // 主题设置
   themeConfig: {
+    // logo
+    logo: '/logo.png',
+    siteTitle: 'Code',
+
     // https://vitepress.dev/reference/default-theme-config
     // 导航栏
     nav: [
