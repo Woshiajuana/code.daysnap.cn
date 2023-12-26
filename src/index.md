@@ -4,11 +4,11 @@ layout: home
 
 hero:
   name: "Code"
-  text: "code daysnap"
-  tagline: My great project tagline
+  text: "面试题"
+  tagline: 好好学习，天天向上！！！
   actions:
     - theme: brand
-      text: Markdown Examples
+      text: 开始学习
       link: /markdown-examples
     - theme: alt
       text: API Examples
