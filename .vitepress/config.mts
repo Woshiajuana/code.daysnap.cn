@@ -18,6 +18,7 @@ export default defineConfig({
     // 导航栏
     nav: [
       { text: '首页', link: '/' },
+      { text: '指南', link: '/guide/' },
       {
         text: '前端面试',
         items: [
@@ -33,6 +34,9 @@ export default defineConfig({
 
     // 侧边栏
     sidebar: {
+      '/guide/': [
+        { text: '引导', link: '/guide/' },
+      ],
       '/html-css/': [
         { text: '引导', link: '/html-css/' },
       ],
@@ -85,7 +89,13 @@ export default defineConfig({
     // 其他链接
     socialLinks: [
       { icon: 'github', link: 'https://github.com/Woshiajuana/code.daysnap.cn' }
-    ]
+    ],
+
+    // 尾部
+    footer: {
+      message: '本文档由 <a href="https://www.daysnap.cn/">daysnap.cn</a> 整理',
+      copyright: 'Copyright © 2023-present <a href="https://github.com/woshiajuana">Woshiajuana</a>',
+    },
   },
 
   // markdown 设置
