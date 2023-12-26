@@ -48,6 +48,7 @@ export default defineConfig({
       ],
       '/html-css/': [
         { text: '引导', link: '/html-css/' },
+        { text: 'CSS盒模型', link: '/html-css/box-sizing' },
       ],
       '/js-ts/': [
         { text: '引导', link: '/js-ts/' },
@@ -131,6 +132,9 @@ export default defineConfig({
         }
       },
     },
+
+    outline: 'deep',
+    outlineTitle: '本页目录',
 
     docFooter: {
       prev: '上一页',
