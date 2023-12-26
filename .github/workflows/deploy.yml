@@ -1,0 +1,51 @@
+name: Deploy
+
+on:
+  push:
+    branches: [ master ]
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        node-version: [ 18.x ]
+    steps:
+      # 获取源码
+      - name: Checkout
+        uses: actions/checkout@v2
+
+      # 设置 node
+      - name: Use Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v2
+        with:
+          node-version: ${{ matrix.node-version }}
+
+      # 安装依赖 打包
+      - name: Install and Build
+        run: |
+          node -v
+          npm install
+          npm run build
+
+      # 网站发布到目标服务器
+      - name: Upload Website
+        uses: appleboy/scp-action@master
+        with:
+          host: ${{ secrets.REMOTE_HOST }} # 公网ip
+          username: ${{ secrets.REMOTE_USERNAME }} # 用户名
+          key: ${{ secrets.PRIVATE_KEY }} # 私钥
+          source: "./dist" # 发送文件
+          target: "/web/code.daysnap.cn/" # 目标目录
+          strip_components: 2
+
+      # algolia
+      - name: Get the content of algolia.json as config
+        id: algolia_config
+        run: echo "::set-output name=config::$(cat algolia.json | jq -r tostring)"
+      - name: Push indices to Algolia
+        uses: signcl/docsearch-scraper-action@master
+        env:
+          APPLICATION_ID: ${{ secrets.APPLICATION_ID }}
+          API_KEY: ${{ secrets.API_KEY }}
+          CONFIG: ${{ steps.algolia_config.outputs.config }}

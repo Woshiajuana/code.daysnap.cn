@@ -12,7 +12,7 @@ export default defineConfig({
   lang: 'zh',
   base: '/',
   srcDir: './src',
-  outDir: './.vitepress/dist', // 默认输出
+  outDir: './dist', // 默认输出
   assetsDir: 'assets',
 
   // 国际化
