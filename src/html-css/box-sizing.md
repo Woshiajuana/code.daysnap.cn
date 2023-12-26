@@ -9,9 +9,9 @@
 - 边框（border）
 - 外边距（margin）
 
-## 类型
+## 盒子的类型
 
-- 标准盒模型：在指定 width 和 height 属性时，设置的是内容区域的宽度和高度。
+- 标准盒模型：在指定 width 和 height 属性时，设置的是内容区域的宽度和高度，`width = content`。
 
 ```css
 .box {
@@ -19,7 +19,7 @@
 }
 ```
 
-- IE 盒模型：在指定 width 和 height 属性时，将边框和内边距的宽度和高度纳入到元素的总宽度和总高度之中。
+- IE 盒模型：在指定 width 和 height 属性时，将边框和内边距的宽度和高度纳入到元素的总宽度和总高度之中，`width = content + padding + border`。
 
 ```css
 .box {
@@ -27,38 +27,46 @@
 }
 ```
 
-
 ## 示例
 
 ::: sandbox {template=static entry=/src/index.html}
+
 ```css /src/index.css
-.parent{
-  width: 200px;
-  height: 200px;
-  border: 1px solid #ddd;
-  display: table-cell; 
-  vertical-align: middle;
-  /* text-align: center; */
-}
-.child{
+.content-box {
+  box-sizing: content-box;
+  color: #fff;
   width: 100px;
   height: 100px;
-  margin: 0 auto;
+  border: 10px solid #ddd;
+  background-color: blue;
+  padding: 10px;
+  font-size: 12px;
+}
+.border-box {
+  box-sizing: border-box;
+  color: #fff;
+  width: 100px;
+  height: 100px;
   background-color: red;
+  border: 10px solid #ddd;
+  padding: 10px;
+  font-size: 12px;
 }
 ```
+
 ```html index.html  [active]
 <!DOCTYPE html>
 <html lang="zh">
-<head>
-  <meta charset="UTF-8">
-  <link rel="stylesheet" href="./src/index.css">
-</head>
-<body>
-  <div class="parent">
-    <div class="child"></div>
-  </div>
-</body>
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="stylesheet" href="./src/index.css" />
+  </head>
+  <body>
+    <div class="content-box">content-box (100 * 100)</div>
+    <br />
+    <div class="border-box">border-box (100 * 100)</div>
+  </body>
 </html>
 ```
+
 :::

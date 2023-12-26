@@ -1,7 +1,6 @@
 # 让元素垂直水平居中的方法有哪些？
 
 
-
 ## 示例
 
 ::: sandbox {template=static entry=/src/index.html}
