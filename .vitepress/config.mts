@@ -34,91 +34,48 @@ export default defineConfig({
     // 侧边栏
     sidebar: {
       '/html-css/': [
-        {
-          text: 'HTML & CSS',
-          collapsed: false,
-          items: [
-            { text: '引导', link: '/html-css/' },
-          ]
-        }
+        { text: '引导', link: '/html-css/' },
       ],
       '/js-ts/': [
-        {
-          text: 'Javascript',
-          collapsed: false,
-          items: [
-            { text: '引导', link: '/html-css/' },
-          ]
-        },
-        {
-          text: 'Typescript',
-          collapsed: false,
-          items: [
-            { text: '引导', link: '/html-css/' },
-          ]
-        },
+        { text: '引导', link: '/js-ts/' },
       ],
-      'vue': [
-        {
-          text: 'Vue',
-          collapsed: false,
-          items: [
-            { text: '引导', link: '/html-css/' },
-          ]
-        },
+      '/vue/': [
+        { text: '引导', link: '/vue/' },
       ],
-      'react': [
-        {
-          text: 'React',
-          collapsed: false,
-          items: [
-            { text: '引导', link: '/html-css/' },
-          ]
-        },
+      '/react/': [
+        { text: '引导', link: '/react/' },
       ],
-      'bundler': [
+      '/bundler/': [
+        { text: '引导', link: '/bundler/' },
         {
           text: 'Webpack',
           collapsed: false,
           items: [
-            { text: '引导', link: '/html-css/' },
+            { text: '引导', link: '/bundler/webpack/' },
           ]
         },
         {
           text: 'Vite',
           collapsed: false,
           items: [
-            { text: '引导', link: '/html-css/' },
+            { text: '引导', link: '/bundler/vite/' },
           ]
         },
         {
-          text: 'gulp',
+          text: 'Gulp',
           collapsed: false,
           items: [
-            { text: '引导', link: '/html-css/' },
-          ]
-        },
-        {
-          text: 'rollup',
-          collapsed: false,
-          items: [
-            { text: '引导', link: '/html-css/' },
+            { text: '引导', link: '/bundler/gulp/' },
           ]
         },
       ],
       '/other/': [
-        {
-          text: '杂项',
-          collapsed: false,
-          items: [
-            { text: '引导', link: '/html-css/' },
-          ]
-        },
+        { text: '引导', link: '/other/' },
         {
           text: '网络',
           collapsed: false,
           items: [
-            { text: '引导', link: '/html-css/' },
+            { text: '引导', link: '/other/network/' },
           ]
         },
       ],
@@ -131,6 +88,7 @@ export default defineConfig({
     ]
   },
 
+  // markdown 设置
   markdown: {
     // theme: 'material-theme-palenight',
     lineNumbers: true,
