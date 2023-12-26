@@ -1,4 +1,6 @@
 import { defineConfig } from 'vitepress'
+import container from 'markdown-it-container'
+import { renderSandbox } from 'vitepress-plugin-sandpack'
 
 // https://vitepress.dev/reference/site-config
 export default defineConfig({
@@ -49,6 +51,7 @@ export default defineConfig({
       '/html-css/': [
         { text: '引导', link: '/html-css/' },
         { text: 'CSS盒模型', link: '/html-css/box-sizing' },
+        { text: '让元素垂直水平居中的方法有哪些？', link: '/html-css/vertically-horizontally-center' },
       ],
       '/js-ts/': [
         { text: '引导', link: '/js-ts/' },
@@ -155,12 +158,15 @@ export default defineConfig({
     // theme: 'material-theme-palenight',
     lineNumbers: true,
 
-    // adjust how header anchors are generated,
-    // useful for integrating with tools that use different conventions
-    anchor: {
-      slugify(str) {
-        return encodeURIComponent(str)
-      }
+    // 配置
+    config(md) {
+      md
+        // the second parameter is html tag name
+        .use(container, 'sandbox', {
+          render (tokens: any[], idx: number) {
+            return renderSandbox(tokens, idx, 'sandbox');
+          },
+        });
     }
   },
 

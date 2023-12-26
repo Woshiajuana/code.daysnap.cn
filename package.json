@@ -13,6 +13,8 @@
   "author": "woshiajuana",
   "license": "ISC",
   "devDependencies": {
-    "vitepress": "^1.0.0-rc.32"
+    "@types/markdown-it-container": "^2.0.9",
+    "vitepress": "^1.0.0-rc.32",
+    "vitepress-plugin-sandpack": "^1.1.4"
   }
 }

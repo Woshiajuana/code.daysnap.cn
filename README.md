@@ -16,3 +16,19 @@ npm install -D vitepress
 ```sh
 npx vitepress init
 ```
+
+- 开发运行
+
+```sh
+npm run docs:dev
+```
+
+## 集成插件
+
+- vitepress-project-folder
+
+[文档地址](https://vitepress-sandbox.js-bridge.com/)
+
+```sh
+npm i vitepress-plugin-sandpack -D
+```
