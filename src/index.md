@@ -9,7 +9,7 @@ hero:
   actions:
     - theme: brand
       text: 开始刷题
-      link: /guide
+      link: /guide/
     - theme: alt
       text: 在GitHub上查看
       link: https://github.com/Woshiajuana/code.daysnap.cn
