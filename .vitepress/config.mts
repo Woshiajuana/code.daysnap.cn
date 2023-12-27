@@ -22,7 +22,7 @@ export default defineConfig({
       lang: 'zh-CN',
     }
   },
-  
+
   // 主题设置
   themeConfig: {
     // logo
@@ -60,6 +60,8 @@ export default defineConfig({
       ],
       '/js-ts/': [
         { text: '引导', link: '/js-ts/' },
+        { text: 'new 原理以及实现', link: '/js-ts/new' },
+        { text: '原型与原型链', link: '/js-ts/prototype' },
       ],
       '/vue/': [
         { text: '引导', link: '/vue/' },
