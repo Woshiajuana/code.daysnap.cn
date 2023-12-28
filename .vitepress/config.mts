@@ -1,6 +1,7 @@
 import { defineConfig } from 'vitepress'
 import container from 'markdown-it-container'
 import { renderSandbox } from 'vitepress-plugin-sandpack'
+import AutoSidebar from 'vite-plugin-vitepress-auto-sidebar'
 
 // https://vitepress.dev/reference/site-config
 export default defineConfig({
@@ -21,6 +22,20 @@ export default defineConfig({
       label: '简体中文',
       lang: 'zh-CN',
     }
+  },
+
+  vite: {
+    plugins: [
+      // add plugin
+      AutoSidebar({
+        path: 'src',
+        titleFromFile: true,
+        sideBarItemsResolved(data) {
+          data.sort((a) => a.link?.endsWith('/index.html') ? -1 : 1)
+          return data
+        },
+      })
+    ]
   },
 
   // 主题设置
@@ -48,62 +63,62 @@ export default defineConfig({
     ],
 
     // 侧边栏
-    sidebar: {
-      '/guide/': [
-        { text: '引导', link: '/guide/' },
-      ],
-      '/html-css/': [
-        { text: '引导', link: '/html-css/' },
-        { text: 'CSS选择器有哪些？', link: '/html-css/selector' },
-        { text: 'CSS盒模型', link: '/html-css/box-sizing' },
-        { text: '让元素垂直水平居中的方法有哪些？', link: '/html-css/vertically-horizontally-center' },
-      ],
-      '/js-ts/': [
-        { text: '引导', link: '/js-ts/' },
-        { text: 'new 原理以及实现', link: '/js-ts/new' },
-        { text: '原型与原型链', link: '/js-ts/prototype' },
-      ],
-      '/vue/': [
-        { text: '引导', link: '/vue/' },
-      ],
-      '/react/': [
-        { text: '引导', link: '/react/' },
-      ],
-      '/bundler/': [
-        { text: '引导', link: '/bundler/' },
-        {
-          text: 'Webpack',
-          collapsed: false,
-          items: [
-            { text: '引导', link: '/bundler/webpack/' },
-          ]
-        },
-        {
-          text: 'Vite',
-          collapsed: false,
-          items: [
-            { text: '引导', link: '/bundler/vite/' },
-          ]
-        },
-        {
-          text: 'Gulp',
-          collapsed: false,
-          items: [
-            { text: '引导', link: '/bundler/gulp/' },
-          ]
-        },
-      ],
-      '/other/': [
-        { text: '引导', link: '/other/' },
-        {
-          text: '网络',
-          collapsed: false,
-          items: [
-            { text: '引导', link: '/other/network/' },
-          ]
-        },
-      ],
-    },
+    // sidebar: {
+    //   '/guide/': [
+    //     { text: '引导', link: '/guide/' },
+    //   ],
+    //   '/html-css/': [
+    //     { text: '引导', link: '/html-css/' },
+    //     { text: 'CSS选择器有哪些？', link: '/html-css/selector' },
+    //     { text: 'CSS盒模型', link: '/html-css/box-sizing' },
+    //     { text: '让元素垂直水平居中的方法有哪些？', link: '/html-css/vertically-horizontally-center' },
+    //   ],
+    //   '/js-ts/': [
+    //     { text: '引导', link: '/js-ts/' },
+    //     { text: 'new 原理以及实现', link: '/js-ts/new' },
+    //     { text: '原型与原型链', link: '/js-ts/prototype' },
+    //   ],
+    //   '/vue/': [
+    //     { text: '引导', link: '/vue/' },
+    //   ],
+    //   '/react/': [
+    //     { text: '引导', link: '/react/' },
+    //   ],
+    //   '/bundler/': [
+    //     { text: '引导', link: '/bundler/' },
+    //     {
+    //       text: 'Webpack',
+    //       collapsed: false,
+    //       items: [
+    //         { text: '引导', link: '/bundler/webpack/' },
+    //       ]
+    //     },
+    //     {
+    //       text: 'Vite',
+    //       collapsed: false,
+    //       items: [
+    //         { text: '引导', link: '/bundler/vite/' },
+    //       ]
+    //     },
+    //     {
+    //       text: 'Gulp',
+    //       collapsed: false,
+    //       items: [
+    //         { text: '引导', link: '/bundler/gulp/' },
+    //       ]
+    //     },
+    //   ],
+    //   '/other/': [
+    //     { text: '引导', link: '/other/' },
+    //     {
+    //       text: '网络',
+    //       collapsed: false,
+    //       items: [
+    //         { text: '引导', link: '/other/network/' },
+    //       ]
+    //     },
+    //   ],
+    // },
 
 
     // 其他链接
