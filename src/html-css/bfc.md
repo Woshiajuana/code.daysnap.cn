@@ -53,3 +53,7 @@
 - 去除外边距重叠现象
 - 清除浮动
 - 避免某元素被浮动元素覆盖
+
+## 参考
+
+[MDN](https://developer.mozilla.org/zh-CN/docs/Web/Guide/CSS/Block_formatting_context)

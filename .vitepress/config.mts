@@ -31,7 +31,7 @@ export default defineConfig({
         path: 'src',
         titleFromFile: true,
         sideBarItemsResolved(data) {
-          data.sort((a) => a.link?.endsWith('/index.html') ? -1 : 1)
+          data.sort((a) => a.link?.endsWith('/index.html') || a.link?.endsWith('/guide.html') ? -1 : 1)
           return data
         },
       })
