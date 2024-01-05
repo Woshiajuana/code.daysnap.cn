@@ -4,7 +4,7 @@
 
 - 同步 `loader`
 
-```js
+```js 
 module.exports = function (content, map, meta) {
   // ...
   return content;
