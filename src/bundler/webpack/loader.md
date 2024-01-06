@@ -4,7 +4,7 @@
 
 - 同步 `loader`
 
-```js 
+```js
 module.exports = function (content, map, meta) {
   // ...
   return content;
@@ -140,6 +140,10 @@ import a from 'loaderC1!loaderC?q=1!./a.ja'
 }
 ```
 
-执行顺序：`pre > normal > inline > post`
+执行顺序：
 
-相同优先级：`从右到左，从上到下`
+- `Pitching` 阶段: `loader` 上的 `pitch` 方法，按照 后置(`post`) > 行内(`inline`) > 普通(`normal`) > 前置(`pre`) 的顺序调用。
+
+- `Normal` 阶段: `loader` 上的 常规方法，按照 前置(`pre`) > 普通(`normal`) > 行内(`inline`) > 后置(`post`) 的顺序调用。模块源码的转换， 发生在这个阶段。
+
+- 相同优先级：`从右到左，从上到下`
