@@ -1,26 +1,33 @@
 <template>
   <div class="dashboard-wrap">
-    <div class="header-section">
+    <header class="header-section">
       <h1>{{ title }}</h1>
-      <div class="api-filter">
-        <label for="api-filter">筛选</label>
-        <input
-          ref="search"
-          type="search"
-          placeholder="请填写关键词"
-          id="api-filter"
-          v-model="keyword"
-        />
-      </div>
-    </div>
+      <label class="search-box">
+        <span>筛选</span>
+        <input v-model="keyword" type="search" placeholder="请填写关键词"/>
+      </label>
+    </header>
 
-    
+    <section class="dashboard-section" v-for="(list, index) in data" :key="index">
+      <h2>{{ list.text }}</h2>
+      <div class="dashboard-content">
+        <dl class="dashboard-group" v-for="(group, index) in list.items" :key="index">
+          <dt v-if="group.text">{{ group.text }}</dt>
+          <dd v-for="(item, index) in group.items" :key="index">
+            <a v-if="item.link" :href="withBase(item.link)">{{ item.text }}</a>
+          </dd>
+        </dl>
+      </div>
+    </section>
+
+    <p v-if="!data.length" class="no-match">没有搜索到 "{{ keyword }}" . </p>
   </div>
 </template>
 
 <script setup lang="ts">
 import { ref, computed, defineProps } from 'vue'
-import { withBase, useData, useRoute } from 'vitepress'
+import { withBase, useData } from 'vitepress'
+import type { filed } from './types' 
 
 defineProps({
   title: {
@@ -30,82 +37,142 @@ defineProps({
 })
 
 const { theme } = useData()
-const route = useRoute()
 
-const keyword = ref('')
-const data = computed<Record<string, any>>(() => {
-  const { sidebar } = theme.value
-  return sidebar
+const source = computed<filed[]>(() => {
+  const { sidebar, nav } = theme.value as { sidebar:  Record<string, any>, nav: any[] }
+  const maps = nav.reduce<Record<string, string>>((res, item) => {
+    const { items } = item
+    if (items) {
+      items.forEach(({ text, link }) => {
+        res[link] = text
+      })
+    }
+    return res
+  }, {})
+
+  const data = Object
+    .keys(sidebar)
+    .filter(key => !!maps[key])
+    .map((key) => {
+      const { text = maps[key], items } = sidebar[key][0]
+      const defGroup: { text: string, items: any[] } = { text: '', items: [] }
+      const group = items.filter((item: any) => {
+        if (!item.items) {
+          defGroup.items.push(item)
+          return false
+        }
+        return true
+      })
+
+      return { text, items: [defGroup, ...group] }
+    })
+
+  return data
 })
 
-console.log('route => ', route)
-console.log(JSON.stringify(theme.value.sidebar))
+const keyword = ref('')
+const data = computed(() => {
+  if (!keyword.value) {
+    return source.value
+  }
+
+  const reg = new RegExp(`${keyword.value}`, 'i')
+
+  return source.value.map(list => {
+    const items = list.items!.map(group => {
+      const items = group.items?.filter(item => reg.test(item.text)) ?? []
+
+      return { ...group, items }
+    }).filter(item => item.items.length)
+
+    return { ...list, items }
+  }).filter(item => item.items.length)
+})
+
 </script>
 
 <style scoped lang="scss">
+.dark {
+  .dashboard-wrap{
+    --vt-c-bg-soft: #242424;
+    --vt-c-text-code: #aac8e4;
+  }
+}
 .dashboard-wrap{
   max-width: 1024px;
-  margin: 0px auto;
+  margin: 0 auto;
   padding: 64px 32px;
-}
-#api-index {
+
+  --vt-c-bg-soft: #f9f9f9;
+  --vt-c-divider: rgba(60, 60, 60, 0.29);
+  --vt-c-divider-light: rgba(60, 60, 60, 0.12);
+  --vt-c-text-3: rgba(60, 60, 60, 0.33);
+  --vt-c-green: #42b883;
+  --vt-c-text-code: #476582;
+
+  h1,
+  h2,
+  h3 {
+    font-weight: 600;
+    line-height: 1;
+  }
+
+  h1,
+  h2 {
+    letter-spacing: -0.02em;
+  }
+
+  h1 {
+    font-size: 38px;
+  }
+
+  h2 {
+    font-size: 24px;
+    color: var(--vt-c-text-1);
+  }
+
+  h3 {
+    letter-spacing: -0.01em;
+    color: var(--vt-c-green);
+    font-size: 18px;
+    margin-bottom: 1em;
+    transition: color 0.5s;
+  }
 }
 
-h1,
-h2,
-h3 {
-  font-weight: 600;
-  line-height: 1;
+.header-section{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.search-box{
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 1rem;
+  input{
+    border: 1px solid var(--vt-c-divider);
+    border-radius: 8px;
+    padding: 6px 12px;
+    transition: box-shadow 0.25s ease;
+    outline-offset: -2px;
+    background-color: transparent;
+    &:focus {
+      box-shadow: 0 0 4pt #00d47499;
+    }
+  }
 }
 
-h1,
-h2 {
-  letter-spacing: -0.02em;
-}
-
-h1 {
-  font-size: 38px;
-}
-
-h2 {
-  font-size: 24px;
-  color: var(--vt-c-text-1);
-  margin: 36px 0;
-  transition: color 0.5s;
-  padding-top: 36px;
+.dashboard-section{
+  margin-top: 36px;
+  padding: 36px 0;
   border-top: 1px solid var(--vt-c-divider-light);
 }
-
-h3 {
-  letter-spacing: -0.01em;
-  color: var(--vt-c-green);
-  font-size: 18px;
-  margin-bottom: 1em;
-  transition: color 0.5s;
+.dashboard-content{
+  margin-top: 36px;
 }
-
-.api-section {
-  margin-bottom: 64px;
-}
-
-.api-groups a {
-  font-size: 15px;
-  font-weight: 500;
-  line-height: 2;
-  color: var(--vt-c-text-code);
-  transition: color 0.5s;
-}
-
-.dark api-groups a {
-  font-weight: 400;
-}
-
-.api-groups a:hover {
-  color: var(--vt-c-green);
-  transition: none;
-}
-
-.api-group {
+.dashboard-group{
+  margin: 0;
   break-inside: avoid;
   overflow: auto;
   margin-bottom: 20px;
@@ -113,74 +180,46 @@ h3 {
   border-radius: 8px;
   padding: 24px 28px;
   transition: background-color 0.5s;
+  dt{
+    letter-spacing: -0.01em;
+    color: var(--vt-c-green);
+    font-size: 18px;
+    margin-bottom: 1em;
+    transition: color 0.5s;
+    font-weight: 600;
+  }
+  dd{
+    margin-left: 0;
+  }
+  a{
+    font-size: 15px;
+    font-weight: 500;
+    line-height: 2;
+    color: var(--vt-c-text-code);
+    transition: color 0.5s;
+    &:hover{
+      color: var(--vt-c-green);
+    }
+  }
 }
 
-.header {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-}
-
-.api-filter {
-  display: flex;
-  align-items: center;
-  justify-content: flex-start;
-  gap: 1rem;
-}
-
-#api-filter {
-  border: 1px solid var(--vt-c-divider);
-  border-radius: 8px;
-  padding: 6px 12px;
-  transition: box-shadow 0.25s ease;
-}
-
-#api-filter:focus {
-  box-shadow: 0 0 4pt #00d47499;
-}
-
-.api-filter:focus {
-  border-color: var(--vt-c-green-light);
-}
-
-.no-match {
+.no-match{
   font-size: 1.2em;
   color: var(--vt-c-text-3);
+  border-top: 1px solid var(--vt-c-divider-light);
   text-align: center;
   margin-top: 36px;
-  padding-top: 36px;
-  border-top: 1px solid var(--vt-c-divider-light);
-}
-
-@media (max-width: 768px) {
-  #api-index {
-    padding: 42px 24px;
-  }
-  h1 {
-    font-size: 32px;
-    margin-bottom: 24px;
-  }
-  h2 {
-    font-size: 22px;
-    margin: 42px 0 32px;
-    padding-top: 32px;
-  }
-  .api-groups a {
-    font-size: 14px;
-  }
-  .header {
-    display: block;
-  }
+  padding: 72px 0;
 }
 
 @media (min-width: 768px) {
-  .api-groups {
+  .dashboard-content {
     columns: 2;
   }
 }
 
 @media (min-width: 1024px) {
-  .api-groups {
+  .dashboard-content {
     columns: 3;
   }
 }

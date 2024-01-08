@@ -19,6 +19,7 @@ export interface APIGroup {
 // auto generator
 export declare const data: any[]
 
+// https://vitepress.dev/zh/guide/data-loading#basic-usage
 export default {
   watch: './*.md',
   load () {
