@@ -1,3 +1,14 @@
-# 指南
+---
+title: 指南
+layout: page
+sidebar: false
+page: true
+footer: false
+aside: false
+---
 
-本系列
+<DashboardView title="指南"/>
+
+<script setup>
+import { DashboardView } from '../components'
+</script>

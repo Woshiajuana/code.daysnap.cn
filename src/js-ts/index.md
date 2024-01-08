@@ -1,3 +1,8 @@
-# JS & TS
+---
+title: 指南
+sidebar: true
+page: true
+footer: false
+---
 
-本系列
+# 指南
