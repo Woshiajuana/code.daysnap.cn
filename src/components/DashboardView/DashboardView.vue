@@ -1,6 +1,6 @@
 <template>
-  <div id="api-index">
-    <div class="header">
+  <div class="dashboard-wrap">
+    <div class="header-section">
       <h1>{{ title }}</h1>
       <div class="api-filter">
         <label for="api-filter">筛选</label>
@@ -9,108 +9,46 @@
           type="search"
           placeholder="请填写关键词"
           id="api-filter"
-          v-model="query"
+          v-model="keyword"
         />
       </div>
     </div>
 
-    <div
-      v-for="section of filtered"
-      :key="section.text"
-      class="api-section"
-    >
-      <h2 :id="section.anchor">{{ section.text }}</h2>
-      <div class="api-groups">
-        <div
-          v-for="item of section.items"
-          :key="item.text"
-          class="api-group"
-        >
-          <h3>{{ item.text }}</h3>
-          <ul>
-            <li v-for="h of item.headers" :key="h.anchor">
-              <a :href="withBase(item.link) + '.html#' + h.anchor">{{ h.text }}</a>
-            </li>
-          </ul>
-        </div>
-      </div>
-    </div>
-
-    <div v-if="!filtered.length" class="no-match">
-    没有搜索到 "{{ query }}" .
-    </div>
+    
   </div>
 </template>
 
 <script setup lang="ts">
-import { ref, computed, onMounted, defineProps } from 'vue'
-import { withBase, useData } from 'vitepress'
-import { data as apiIndex, APIGroup } from './index.data'
+import { ref, computed, defineProps } from 'vue'
+import { withBase, useData, useRoute } from 'vitepress'
 
-const data = useData()
-
-console.log(data.theme.value.sidebar)
-
-const props = defineProps({
+defineProps({
   title: {
     type: String,
     default: '',
   },
 })
 
-const search = ref()
-const query = ref('')
-const normalize = (s: string) => s.toLowerCase().replace(/-/g, ' ')
+const { theme } = useData()
+const route = useRoute()
 
-onMounted(() => {
-  search.value?.focus()
+const keyword = ref('')
+const data = computed<Record<string, any>>(() => {
+  const { sidebar } = theme.value
+  return sidebar
 })
 
-const filtered = computed(() => {
-  const q = normalize(query.value)
-  const matches = (text: string) => normalize(text).includes(q)
-
-  return apiIndex
-    .map((section) => {
-      // section title match
-      if (matches(section.text)) {
-        return section
-      }
-
-      // filter groups
-      const matchedGroups = section.items
-        .map((item) => {
-          // group title match
-          if (matches(item.text)) {
-            return item
-          }
-          // ssr special case
-          if (q.includes('ssr') && item.text.startsWith('Server')) {
-            return item
-          }
-          // filter headers
-          const matchedHeaders = item.headers.filter(
-            ({ text, anchor }) => matches(text) || matches(anchor)
-          )
-          return matchedHeaders.length
-            ? { text: item.text, link: item.link, headers: matchedHeaders }
-            : null
-        })
-        .filter((i) => i)
-
-      return matchedGroups.length
-        ? { text: section.text, items: matchedGroups }
-        : null
-    })
-    .filter((i) => i) as APIGroup[]
-})
+console.log('route => ', route)
+console.log(JSON.stringify(theme.value.sidebar))
 </script>
 
-<style scoped>
-#api-index {
+<style scoped lang="scss">
+.dashboard-wrap{
   max-width: 1024px;
   margin: 0px auto;
   padding: 64px 32px;
+}
+#api-index {
 }
 
 h1,
