@@ -1,0 +1,21 @@
+# css 哪些属性是可以继承的？
+
+- 字体的一些属性
+  - font-family（字体系列）
+  - font-size（字体大小）
+  - font-weight（字体粗细）
+  - font-style（字体样式，如 italic）
+- 文本的一些属性
+  - color
+  - line-height
+  - text-align
+  - text-decoration
+  - text-indent
+- 列表属性
+  - list-style
+- 表格相关属性：
+  - border-collapse（表格边框合并方式）
+  - border-spacing（表格边框间距）
+  - caption-side（表格标题位置）
+- 元素的可见性
+  - visibility: hidden
