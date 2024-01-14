@@ -1,4 +1,4 @@
-# 手写实现 call apply bind
+# 手写实现 call、apply、bind
 
 ## call
 
