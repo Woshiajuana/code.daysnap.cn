@@ -76,4 +76,59 @@
 </html>
 ```
 
+此方法 `webkit` 浏览器都支持，其他小部分浏览器会有兼容性问题。
+
 :::
+
+## 利用伪元素兼容多行溢出
+
+```css
+.multiple-line {
+  position: relative;
+  line-height: 1.5em;
+  height: 3em;
+  overflow: hidden;
+}
+.multiple-line:after {
+  content: "...";
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  padding: 0 5px;
+  background-color: #fff;
+}
+```
+
+::: sandbox {template=static entry=/src/index.html}
+
+```css /src/index.css
+.multiple-line {
+  position: relative;
+  line-height: 1.5em;
+  height: 3em;
+  overflow: hidden;
+}
+.multiple-line:after {
+  content: "...";
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  padding: 0 5px;
+  background-color: #fff;
+}
+```
+
+```html index.html  [active]
+<!DOCTYPE html>
+<html lang="zh">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="stylesheet" href="./src/index.css" />
+  </head>
+  <body>
+    <p class="multiple-line">
+      利用伪元素兼容多行溢出利用利用伪元素兼容多行溢出利用伪元素兼容多行溢出利用伪元素兼容多行溢出利用伪元素兼容多行溢出利用伪元素兼容多行溢出利用伪元素兼容多行溢出利用伪元素兼容多行溢出利用伪元素兼容多行溢出利用伪元素兼容多行溢出利用伪元素兼容多行溢出利用伪元素兼容多行溢出利用伪元素兼容多行溢出利用伪元素兼容多行溢出利用伪元素兼容多行溢出伪元素兼容多行溢出利用伪元素兼容多行溢出利用伪元素兼容多行溢出利用伪元素兼容多行溢出利用伪元素兼容多行溢出利用伪元素兼容多行溢出
+    </p>
+  </body>
+</html>
+```
