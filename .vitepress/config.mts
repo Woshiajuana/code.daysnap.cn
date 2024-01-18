@@ -31,27 +31,22 @@ export default defineConfig({
         sideBarItemsResolved(data) {
           // 转换文案
           const mapping = {
-            index: '指南',
-            basic: "基础",
-            intermediate: "进阶",
-            advanced: "高级",
+            index: { text: "指南", sort: -1 },
+            guide: { text: "指南", sort: -1 },
+            basic: { text: "基础", sort:1 },
+            intermediate: { text: "进阶", sort: 2 },
+            advanced: { text: "高级", sort: 3 },
           };
-          data.forEach((item) => {
+          const list = data.map((item) => {
             if (item.text) {
-              const text = mapping[item.text];
-              if (text) {
-                item.text = text;
-              }
+              Object.assign(item, mapping[item.text] ?? {})
             }
+            return { sort: 99, ...item }
           });
 
           // 排序
-          data.sort((a) =>
-            a.link?.endsWith("/index.html") || a.link?.endsWith("/guide.html")
-              ? -1
-              : 1
-          );
-          return data;
+          list.sort((a, b) => a.sort - b.sort);
+          return list;
         },
       }),
     ],
