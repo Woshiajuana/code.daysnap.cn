@@ -50,3 +50,4 @@
 ## 参考
 
 - [Node.js 进阶之进程与线程](https://zhuanlan.zhihu.com/p/94613627)
+- [进程与线程的一个简单解释](https://www.ruanyifeng.com/blog/2013/04/processes_and_threads.html)
