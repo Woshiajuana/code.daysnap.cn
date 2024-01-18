@@ -7,7 +7,22 @@ import AutoSidebar from "vite-plugin-vitepress-auto-sidebar";
 export default defineConfig({
   title: "Code",
   description: "code daysnap",
-  head: [["link", { rel: "icon", href: "/favicon.ico" }]],
+  head: [
+    ["link", { rel: "icon", href: "/favicon.ico" }],
+    [
+      "script",
+      {},
+      `
+      var _hmt = _hmt || [];
+      (function() {
+        var hm = document.createElement("script");
+        hm.src = "https://hm.baidu.com/hm.js?1b6b1a401242607e806a3f7074aafbb6";
+        var s = document.getElementsByTagName("script")[0]; 
+        s.parentNode.insertBefore(hm, s);
+      })();
+      `,
+    ],
+  ],
   lang: "zh",
   base: "/",
   srcDir: "./src",
@@ -33,15 +48,15 @@ export default defineConfig({
           const mapping = {
             index: { text: "指南", sort: -1 },
             guide: { text: "指南", sort: -1 },
-            basic: { text: "基础", sort:1 },
+            basic: { text: "基础", sort: 1 },
             intermediate: { text: "进阶", sort: 2 },
             advanced: { text: "高级", sort: 3 },
           };
           const list = data.map((item) => {
             if (item.text) {
-              Object.assign(item, mapping[item.text] ?? {})
+              Object.assign(item, mapping[item.text] ?? {});
             }
-            return { sort: 99, ...item }
+            return { sort: 99, ...item };
           });
 
           // 排序
@@ -85,7 +100,8 @@ export default defineConfig({
 
     // 尾部
     footer: {
-      message: '本文档由 <a href="https://www.daysnap.cn/">daysnap.cn</a> 整理',
+      message:
+        '本文档由 <a href="https://www.daysnap.cn/">daysnap.cn</a> 整理，如发现不对之处，请 <a href="https://github.com/Woshiajuana/code.daysnap.cn/issues">点我勘误</a>',
       copyright: `Copyright © 2022-${new Date().getFullYear()} <a href="https://github.com/woshiajuana">Woshiajuana</a>`,
     },
 
