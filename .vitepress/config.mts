@@ -51,6 +51,8 @@ export default defineConfig({
             basic: { text: "基础", sort: 1 },
             intermediate: { text: "进阶", sort: 2 },
             advanced: { text: "高级", sort: 3 },
+            algorithm: { text: "算法", sort: 4 },
+            "network-secure": { text: "网络及安全", sort: 4 },
           };
           const list = data.map((item) => {
             if (item.text) {
