@@ -1,8 +1,13 @@
 ---
-title: 指南
-sidebar: true
+title: JS-TS 指南
+layout: page
 page: true
 footer: false
+aside: false
 ---
 
-# 指南
+<DashboardView title="JS-TS 指南"/>
+
+<script setup>
+  import { DashboardView } from '../components'
+</script>

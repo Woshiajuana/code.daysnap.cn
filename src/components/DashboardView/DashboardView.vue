@@ -4,14 +4,25 @@
       <h1>{{ title }}</h1>
       <label class="search-box">
         <span>筛选</span>
-        <input v-model="keyword" type="search" placeholder="请填写关键词"/>
+        <input v-model="keyword" type="search" placeholder="请填写关键词" />
       </label>
     </header>
 
-    <section class="dashboard-section" v-for="(list, index) in data" :key="index">
-      <h2>{{ list.text }}</h2>
+    <section
+      class="dashboard-section"
+      v-for="(list, index) in data"
+      :key="index"
+    >
+      <h2 v-if="!maps[path]">
+        {{ list.text }}
+        <span>（{{ list.count }}篇）</span>
+      </h2>
       <div class="dashboard-content">
-        <dl class="dashboard-group" v-for="(group, index) in list.items" :key="index">
+        <dl
+          class="dashboard-group"
+          v-for="(group, index) in list.items"
+          :key="index"
+        >
           <dt v-if="group.text">{{ group.text }}</dt>
           <dd v-for="(item, index) in group.items" :key="index">
             <a v-if="item.link" :href="withBase(item.link)">{{ item.text }}</a>
@@ -20,85 +31,117 @@
       </div>
     </section>
 
-    <p v-if="!data.length" class="no-match">没有搜索到 "{{ keyword }}" . </p>
+    <p v-if="!data.length" class="no-match">没有搜索到 "{{ keyword }}" .</p>
   </div>
 </template>
 
 <script setup lang="ts">
-import { ref, computed, defineProps } from 'vue'
-import { withBase, useData } from 'vitepress'
-import type { filed } from './types' 
+import { ref, computed, defineProps } from "vue";
+import { withBase, useData, useRoute } from "vitepress";
+import type { filed } from "./types";
 
 defineProps({
   title: {
     type: String,
-    default: '',
+    default: "",
   },
-})
+});
 
-const { theme } = useData()
+const { theme } = useData<{
+  sidebar: Record<string, any>;
+  nav: any[];
+}>();
 
-const source = computed<filed[]>(() => {
-  const { sidebar, nav } = theme.value as { sidebar:  Record<string, any>, nav: any[] }
-  const maps = nav.reduce<Record<string, string>>((res, item) => {
-    const { items } = item
+const { path } = useRoute();
+const maps = computed(() => {
+  const { nav } = theme.value;
+  let res = nav.reduce<Record<string, string>>((res, item) => {
+    const { items } = item;
     if (items) {
       items.forEach(({ text, link }) => {
-        res[link] = text
-      })
+        res[link] = text;
+      });
     }
-    return res
-  }, {})
+    return res;
+  }, {});
 
-  const data = Object
-    .keys(sidebar)
-    .filter(key => !!maps[key])
-    .map((key) => {
-      const { text = maps[key], items } = sidebar[key][0]
-      const defGroup: { text: string, items: any[] } = { text: '', items: [] }
-      const group = items.filter((item: any) => {
-        if (!item.items) {
-          defGroup.items.push(item)
-          return false
-        }
-        return true
-      })
-
-      return { text, items: [defGroup, ...group] }
-    })
-
-  return data
-})
-
-const keyword = ref('')
-const data = computed(() => {
-  if (!keyword.value) {
-    return source.value
+  if (res[path]) {
+    return { [path]: res[path] };
   }
 
-  const reg = new RegExp(`${keyword.value}`, 'i')
+  return res;
+});
 
-  return source.value.map(list => {
-    const items = list.items!.map(group => {
-      const items = group.items?.filter(item => reg.test(item.text)) ?? []
+const source = computed<filed[]>(() => {
+  const sidebar = JSON.parse(JSON.stringify(theme.value.sidebar));
 
-      return { ...group, items }
-    }).filter(item => item.items.length)
+  const data = Object.keys(sidebar)
+    .filter((key) => !!maps.value[key])
+    .map((key) => {
+      const { text = maps.value[key], items } = sidebar[key][0];
+      const defGroup: filed = { text: "", items: [], count: 0 };
+      const groups = items.filter((item: any) => {
+        if (!item.items) {
+          defGroup.items.push(item);
+          return false;
+        }
+        return true;
+      });
+      defGroup.count = defGroup.items.length;
+      groups.forEach(
+        (group: { count: any; items: string | any[] }) =>
+          (group.count = group.items.length)
+      );
 
-    return { ...list, items }
-  }).filter(item => item.items.length)
-})
+      const allGroups = [defGroup, ...groups];
 
+      return {
+        text,
+        items: allGroups,
+        count: allGroups.reduce((res, item) => res + item.count, 0),
+      };
+    });
+
+  return data;
+});
+
+const keyword = ref("");
+const data = computed(() => {
+  if (!keyword.value) {
+    return source.value;
+  }
+
+  const reg = new RegExp(`${keyword.value}`, "i");
+
+  return source.value
+    .map((list) => {
+      const items = list
+        .items!.map((group) => {
+          const items =
+            group.items?.filter((item) => reg.test(item.text)) ?? [];
+
+          return { ...group, items, count: items.length };
+        })
+        .filter((item) => item.count);
+
+      return {
+        ...list,
+        items,
+        count: items.reduce((res, item) => res + item.count, 0),
+      };
+    })
+    .filter((item) => item.items.length);
+});
 </script>
 
 <style scoped lang="scss">
 .dark {
-  .dashboard-wrap{
+  .dashboard-wrap {
     --vt-c-bg-soft: #242424;
     --vt-c-text-code: #aac8e4;
   }
 }
-.dashboard-wrap{
+.dashboard-wrap {
   max-width: 1024px;
   margin: 0 auto;
   padding: 64px 32px;
@@ -140,17 +183,17 @@ const data = computed(() => {
   }
 }
 
-.header-section{
+.header-section {
   display: flex;
   align-items: center;
   justify-content: space-between;
 }
-.search-box{
+.search-box {
   display: flex;
   align-items: center;
   justify-content: flex-start;
   gap: 1rem;
-  input{
+  input {
     border: 1px solid var(--vt-c-divider);
     border-radius: 8px;
     padding: 6px 12px;
@@ -163,15 +206,22 @@ const data = computed(() => {
   }
 }
 
-.dashboard-section{
+.dashboard-section {
   margin-top: 36px;
-  padding: 36px 0;
+  padding-bottom: 36px;
   border-top: 1px solid var(--vt-c-divider-light);
+  span {
+    font-size: 16px;
+    color: #999;
+  }
+  h2{
+    padding-top: 36px;
+  }
 }
-.dashboard-content{
+.dashboard-content {
   margin-top: 36px;
 }
-.dashboard-group{
+.dashboard-group {
   margin: 0;
   break-inside: avoid;
   overflow: auto;
@@ -180,7 +230,7 @@ const data = computed(() => {
   border-radius: 8px;
   padding: 24px 28px;
   transition: background-color 0.5s;
-  dt{
+  dt {
     letter-spacing: -0.01em;
     color: var(--vt-c-green);
     font-size: 18px;
@@ -188,22 +238,22 @@ const data = computed(() => {
     transition: color 0.5s;
     font-weight: 600;
   }
-  dd{
+  dd {
     margin-left: 0;
   }
-  a{
+  a {
     font-size: 15px;
     font-weight: 500;
     line-height: 2;
     color: var(--vt-c-text-code);
     transition: color 0.5s;
-    &:hover{
+    &:hover {
       color: var(--vt-c-green);
     }
   }
 }
 
-.no-match{
+.no-match {
   font-size: 1.2em;
   color: var(--vt-c-text-3);
   border-top: 1px solid var(--vt-c-divider-light);

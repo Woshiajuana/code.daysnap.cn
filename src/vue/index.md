@@ -1,3 +1,13 @@
-# Vue
+---
+title: Vue 指南
+layout: page
+page: true
+footer: false
+aside: false
+---
 
-本系列
+<DashboardView title="Vue 指南"/>
+
+<script setup>
+  import { DashboardView } from '../components'
+</script>
