@@ -15,7 +15,6 @@ export default {
     // 路由钩子函数
     ctx.router.onAfterRouteChanged = (to) => {
       if (typeof window !== 'undefined') {
-        console.log("onAfterRouteChanged => ", to);
         const _hmt = (window as any)._hmt;
         if (typeof _hmt !== "undefined") {
           _hmt.push(["_trackPageview", to]);

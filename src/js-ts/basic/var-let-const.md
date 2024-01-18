@@ -1,4 +1,4 @@
-# var、let、const 区别【待完善】
+# var、let、const 区别
 
 - `var` 存在变量提升，`let` 和 `const` 不存在变量提升。
 

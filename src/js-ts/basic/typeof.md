@@ -71,4 +71,4 @@ Object.prototype.toString.call(obj); // '[object Module]'
 
 ## 参考
 
-[判断数据类型的方式有哪些（原理及优缺点）?](https://blog.csdn.net/qq_38290251/article/details/129936273)
+- [判断数据类型的方式有哪些（原理及优缺点）?](https://blog.csdn.net/qq_38290251/article/details/129936273)
