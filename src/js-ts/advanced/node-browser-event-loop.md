@@ -2,6 +2,12 @@
 
 ##
 
+事件循环分为几个阶段
+
+- `timer`
+
+- ``
+
 ## 参考
 
 [Node 与浏览器的事件循环有什么区别？](https://blog.csdn.net/qq_41257129/article/details/100743394)

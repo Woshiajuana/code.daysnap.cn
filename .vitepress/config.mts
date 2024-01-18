@@ -70,7 +70,7 @@ export default defineConfig({
   // 主题设置
   themeConfig: {
     // logo
-    logo: "/logo.png",
+    logo: "/assets/logo.png",
     siteTitle: "Code",
 
     // 导航栏 https://vitepress.dev/reference/default-theme-config
