@@ -32,7 +32,8 @@ function test() {
 - `react` 的事件其实是一个合成事件，是对原生 `DOM` 事件的一个模拟：
 
   - 兼容浏览器、更好的跨平台
-  - 将事件统一的存放在一个数组中，避免频繁的新增和删除，方便统一管理
+  - 实现事件委托，避免大量创建事件监听
+  - 将事件统一的存放在事件池中，避免频繁的新增和删除，方便统一管理（17+ 已经移出了事件池机制）
 
 - 事件执行顺序为原生 `html` 事件先执行，合成事件后执行
 
@@ -43,7 +44,22 @@ const rootNode = document.getElementById("root");
 ReactDOM.render(<App />, rootNode);
 ```
 
+## 注意
+
+- 并不是所有的事件都会委托到根容器，有些事件还是直接绑定到当前元素，比如 `img` 的 `load` 事件、`input` 的 `invalid` 事件、`video` 和 `audio` 的相关事件等。
+
+- React 16.x 事件执行顺序
+
+![图例](/assets/20240128224611.webp)
+
+- React 17+ 事件执行顺序
+
+![图例](/assets/20240128224612.webp)
+
+- `React` 事件的 `capture` 阶段在原生事件 `capture` 开始时执行，然后是原生事件的 `capture` 阶段和原生事件的 `bubble` 阶段，最后是 `React` 事件的 `bubble` 阶段。
+
+- `React 17` 移除了事件池机制
 
 ## 参考
 
-- [深入学习React的合成事件](https://zhuanlan.zhihu.com/p/618639122)
+- [深入学习 React 的合成事件](https://zhuanlan.zhihu.com/p/618639122)
