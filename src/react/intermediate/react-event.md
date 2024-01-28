@@ -34,4 +34,16 @@ function test() {
   - 兼容浏览器、更好的跨平台
   - 将事件统一的存放在一个数组中，避免频繁的新增和删除，方便统一管理
 
-- 事件执行顺序为原生 `html` 事件先执行，合成事件后执行，合成事件会冒泡绑定到 `document` 上
+- 事件执行顺序为原生 `html` 事件先执行，合成事件后执行
+
+- 因为 `React` 的事件不是挂载到 `jsx` 定义的 `DOM` 节点上，而是通过事件代理挂载到某个祖先节点上。`React 16.x` 及以前的版本这个祖先节点是 `document`，而 `React 17` 之后是根容器，也就是下面代码的 `rootNode。`
+
+```jsx
+const rootNode = document.getElementById("root");
+ReactDOM.render(<App />, rootNode);
+```
+
+
+## 参考
+
+- [深入学习React的合成事件](https://zhuanlan.zhihu.com/p/618639122)
