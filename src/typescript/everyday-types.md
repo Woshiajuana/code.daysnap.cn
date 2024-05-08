@@ -6,6 +6,8 @@
 
 - `boolean`
 
+类型 `boolean` 本身实际上只是联合 `true` | `false` 的别名。
+
 - `Arrays`
 
 ```ts
@@ -37,5 +39,5 @@ printCoord({ x: 3, y: 7 });
 - `Union Types` 联合类型
 
 ```ts
-type U1 = string | number
+type U1 = string | number;
 ```
