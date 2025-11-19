@@ -6,7 +6,7 @@
   "type": "module",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "dev": "vitepress dev --port 12580",
+    "dev": "vitepress dev --host --port 12580",
     "build": "vitepress build",
     "preview": "vitepress preview"
   },
