@@ -21,6 +21,7 @@
   },
   "homepage": "https://github.com/Woshiajuana/answer-sheet.ajuan.me#readme",
   "devDependencies": {
+    "vite-plugin-vitepress-auto-sidebar": "^1.7.1",
     "vitepress": "^2.0.0-alpha.17"
   }
 }

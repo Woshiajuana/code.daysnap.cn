@@ -1,4 +1,5 @@
 import { defineConfig } from 'vitepress'
+import AutoSidebar from "vite-plugin-vitepress-auto-sidebar";
 
 // https://vitepress.dev/reference/site-config
 export default defineConfig({
@@ -6,25 +7,95 @@ export default defineConfig({
   
   title: "答题卡",
   description: "好好学习，天天向上！",
+
+
+  vite: {
+    plugins: [
+      // add plugin
+      AutoSidebar({
+        path: "src",
+        titleFromFile: true,
+        // sideBarItemsResolved(data) {
+        //   // 转换文案
+        //   const mapping = {
+        //     index: { text: "指南", sort: -1 },
+        //     guide: { text: "指南", sort: -1 },
+        //     basic: { text: "基础", sort: 1 },
+        //     intermediate: { text: "进阶", sort: 2 },
+        //     advanced: { text: "高级", sort: 3 },
+        //     algorithm: { text: "算法", sort: 4 },
+        //     "network-secure": { text: "网络及安全", sort: 4 },
+        //   };
+        //   const list = data.map((item) => {
+        //     if (item.text) {
+        //       Object.assign(item, mapping[item.text] ?? {});
+        //     }
+        //     return { sort: 99, ...item };
+        //   });
+
+        //   // 排序
+        //   list.sort((a, b) => a.sort - b.sort);
+        //   return list;
+        // },
+      }) as any,
+    ],
+  },
+
   themeConfig: {
     // https://vitepress.dev/reference/default-theme-config
     nav: [
-      { text: 'Home', link: '/' },
-      { text: 'Examples', link: '/markdown-examples' }
+      { text: "首页", link: "/" },
+      {
+        text: "前端面试",
+        items: [
+          { text: "Html & Css", link: "/html-css/" },
+          { text: "Javascript", link: "/javascript/" },
+          { text: "Typescript", link: "/typescript/" },
+          { text: "Vue", link: "/vue/" },
+          { text: "React", link: "/react/" },
+          { text: "打包工具", link: "/bundler/" },
+          { text: "杂项", link: "/other/" },
+        ],
+      },
     ],
 
-    sidebar: [
-      {
-        text: 'Examples',
-        items: [
-          { text: 'Markdown Examples', link: '/markdown-examples' },
-          { text: 'Runtime API Examples', link: '/api-examples' }
-        ]
-      }
-    ],
+    // sidebar: [
+    //   { text: "首页", link: "/" },
+    //   { text: "指南", link: "/guide/" },
+    //   {
+    //     text: "前端面试",
+    //     items: [
+    //       { text: 'Markdown Examples', link: '/markdown-examples' },
+    //       { text: 'Runtime API Examples', link: '/api-examples' }
+    //     ]
+    //   }
+    // ],
 
     socialLinks: [
       { icon: 'github', link: 'https://github.com/vuejs/vitepress' }
-    ]
+    ],
+
+     // 尾部
+    footer: {
+      message:
+        '本文档由 <a href="https://www.ajuan.me/">ajuan.me</a> 整理，如发现不对之处，请 <a href="https://github.com/Woshiajuana/answer-sheet.ajuan.me/issues">点我勘误</a>',
+      copyright: `Copyright © 2022-${new Date().getFullYear()} <a href="https://github.com/woshiajuana">Woshiajuana</a>`,
+    },
+
+    outline: 'deep',
+    outlineTitle: "本页目录",
+
+    docFooter: {
+      prev: "上一页",
+      next: "下一页",
+    },
+    darkModeSwitchLabel: "外观",
+    sidebarMenuLabel: "菜单",
+    returnToTopLabel: "返回顶部",
+    langMenuLabel: "选择语言",
+
+    lastUpdated: {
+      text: "最近更新时间",
+    },
   }
 })
