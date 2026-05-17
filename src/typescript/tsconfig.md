@@ -2,6 +2,7 @@
 
 ## noImplicitAny
 
+默认情况下，当不指定类型，并且 TypeScript 无法从上下文中推断类型时，编辑器通常会默认使用 any
 启用 noImplicitAny 标志后，任何类型被隐式推断为 any 变量都会报错
 
 ## strictNullChecks
