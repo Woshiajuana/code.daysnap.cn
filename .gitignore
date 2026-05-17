@@ -1,9 +1,0 @@
-.idea
-
-# 依赖
-node_modules/
-
-# vitepress build output
-dist/
-.vitepress/dist
-.vitepress/cache
