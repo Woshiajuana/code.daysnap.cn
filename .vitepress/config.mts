@@ -10,9 +10,7 @@ export default defineConfig({
   title: "答题卡",
   description: "好好学习，天天向上！",
 
-  head: [["link", { rel: "icon", href: "https://answer-sheet.ajuan.me/favicon.ico" }]],
-  // head: [["link", { rel: "icon", href: "/favicon.ico" }]],
-  // head: [["link", { rel: "icon", href: "https://gold.ajuan.me/favicon.ico" }]],
+  head: [["link", { rel: "icon", href: "/favicon.ico" }]],
   lang: "zh",
 
   vite: {
