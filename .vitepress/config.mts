@@ -4,8 +4,8 @@ import { defineConfig } from 'vitepress'
 export default defineConfig({
   srcDir: "src",
   
-  title: "My Awesome Project",
-  description: "A VitePress Site",
+  title: "答题卡",
+  description: "好好学习，天天向上！",
   themeConfig: {
     // https://vitepress.dev/reference/default-theme-config
     nav: [
