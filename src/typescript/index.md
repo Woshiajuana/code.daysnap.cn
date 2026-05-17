@@ -1,7 +1,7 @@
 ---
 title: 指南
 layout: page
-sidebar: false
+sidebar: true
 page: true
 footer: false
 aside: false

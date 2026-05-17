@@ -58,13 +58,7 @@ export default defineConfig({
       {
         text: "前端面试",
         items: [
-          { text: "Html & Css", link: "/html-css/" },
-          { text: "Javascript", link: "/javascript/" },
           { text: "Typescript", link: "/typescript/" },
-          { text: "Vue", link: "/vue/" },
-          { text: "React", link: "/react/" },
-          { text: "打包工具", link: "/bundler/" },
-          { text: "杂项", link: "/other/" },
         ],
       },
     ],
