@@ -1,0 +1,26 @@
+{
+  "name": "answer-sheet.ajuan.me",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "vitepress dev",
+    "build": "vitepress build",
+    "preview": "vitepress preview"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Woshiajuana/answer-sheet.ajuan.me.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Woshiajuana/answer-sheet.ajuan.me/issues"
+  },
+  "homepage": "https://github.com/Woshiajuana/answer-sheet.ajuan.me#readme",
+  "devDependencies": {
+    "vitepress": "^2.0.0-alpha.17"
+  }
+}
