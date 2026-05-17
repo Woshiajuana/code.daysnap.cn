@@ -21,7 +21,10 @@
   },
   "homepage": "https://github.com/Woshiajuana/answer-sheet.ajuan.me#readme",
   "devDependencies": {
+    "markdown-it-container": "^4.0.0",
+    "sass-embedded": "^1.99.0",
     "vite-plugin-vitepress-auto-sidebar": "^1.7.1",
-    "vitepress": "^2.0.0-alpha.17"
+    "vitepress": "^2.0.0-alpha.17",
+    "vitepress-plugin-sandpack": "^1.1.4"
   }
 }

@@ -36,7 +36,7 @@
 </template>
 
 <script setup lang="ts">
-import { ref, computed, defineProps } from "vue";
+import { ref, computed } from "vue";
 import { withBase, useData, useRoute } from "vitepress";
 import type { filed } from "./types";
 

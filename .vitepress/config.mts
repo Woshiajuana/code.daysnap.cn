@@ -1,5 +1,7 @@
 import { defineConfig } from 'vitepress'
 import AutoSidebar from "vite-plugin-vitepress-auto-sidebar";
+import { renderSandbox } from "vitepress-plugin-sandpack";
+import container from "markdown-it-container";
 
 // https://vitepress.dev/reference/site-config
 export default defineConfig({
@@ -97,5 +99,26 @@ export default defineConfig({
     lastUpdated: {
       text: "最近更新时间",
     },
-  }
+  },
+
+  // markdown 设置
+  markdown: {
+    lineNumbers: true,
+
+    // 配置
+    config(md) {
+      md
+        // the second parameter is html tag name
+        .use(container, "sandbox", {
+          render(tokens: any[], idx: number) {
+            return renderSandbox(tokens, idx, "sandbox");
+          },
+        });
+    },
+  },
+
+  // 网站 sitemap.xml
+  sitemap: {
+    hostname: "https://code.daysnap.cn",
+  },
 })
