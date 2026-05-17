@@ -134,7 +134,7 @@ const data = computed(() => {
 });
 </script>
 
-<style scoped lang="scss">
+<style scoped>
 .dark {
   .dashboard-wrap {
     --vt-c-bg-soft: #242424;

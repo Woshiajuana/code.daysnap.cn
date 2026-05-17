@@ -17,28 +17,28 @@ export default defineConfig({
       AutoSidebar({
         path: "src",
         titleFromFile: true,
-        // sideBarItemsResolved(data) {
-        //   // 转换文案
-        //   const mapping = {
-        //     index: { text: "指南", sort: -1 },
-        //     guide: { text: "指南", sort: -1 },
-        //     basic: { text: "基础", sort: 1 },
-        //     intermediate: { text: "进阶", sort: 2 },
-        //     advanced: { text: "高级", sort: 3 },
-        //     algorithm: { text: "算法", sort: 4 },
-        //     "network-secure": { text: "网络及安全", sort: 4 },
-        //   };
-        //   const list = data.map((item) => {
-        //     if (item.text) {
-        //       Object.assign(item, mapping[item.text] ?? {});
-        //     }
-        //     return { sort: 99, ...item };
-        //   });
+        sideBarItemsResolved(data) {
+          // 转换文案
+          const mapping = {
+            index: { text: "指南", sort: -1 },
+            guide: { text: "指南", sort: -1 },
+            basic: { text: "基础", sort: 1 },
+            intermediate: { text: "进阶", sort: 2 },
+            advanced: { text: "高级", sort: 3 },
+            algorithm: { text: "算法", sort: 4 },
+            "network-secure": { text: "网络及安全", sort: 4 },
+          };
+          const list = data.map((item) => {
+            if (item.text) {
+              Object.assign(item, mapping[item.text] ?? {});
+            }
+            return { sort: 99, ...item };
+          });
 
-        //   // 排序
-        //   list.sort((a, b) => a.sort - b.sort);
-        //   return list;
-        // },
+          // 排序
+          list.sort((a, b) => a.sort - b.sort);
+          return list;
+        },
       }) as any,
     ],
   },
@@ -47,6 +47,7 @@ export default defineConfig({
     // https://vitepress.dev/reference/default-theme-config
     nav: [
       { text: "首页", link: "/" },
+      { text: "指南", link: "/guide/" },
       {
         text: "前端面试",
         items: [
@@ -60,18 +61,6 @@ export default defineConfig({
         ],
       },
     ],
-
-    // sidebar: [
-    //   { text: "首页", link: "/" },
-    //   { text: "指南", link: "/guide/" },
-    //   {
-    //     text: "前端面试",
-    //     items: [
-    //       { text: 'Markdown Examples', link: '/markdown-examples' },
-    //       { text: 'Runtime API Examples', link: '/api-examples' }
-    //     ]
-    //   }
-    // ],
 
     socialLinks: [
       { icon: 'github', link: 'https://github.com/vuejs/vitepress' }
