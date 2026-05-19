@@ -63,6 +63,40 @@ callMeMaybe(() => items.push(3));
 - [参考文档](https://github.com/Microsoft/TypeScript/wiki/FAQ#why-are-functions-returning-non-void-assignable-to-function-returning-void)
 
 
+## 说一说协变和逆变？
+
+
+## infer
+
+- 可以在条件类型中，进行推理，声明新泛型类型变量
+```ts
+type GetReturnType<Type> = Type extends (...args: never[]) => infer Return
+  ? Return
+  : never;
+```
+
+## readonly 和 ? 
+
+- 都是映射修饰符
+- 通过在前缀前添加 - 或 + 来移除或添加这些修饰符，默认是 +
+
+```ts
+type CreateMutable<Type> = {
+  -readonly [Property in keyof Type]: Type[Property];
+};
+type Concrete<Type> = {
+  [Property in keyof Type]-?: Type[Property];
+};
+```
+
+## 内在字符串操作类型
+
+- `Uppercase`：将字符串中的每个字符转换为大写形式。
+- `Lowercase`：将字符串中的每个字符转换为小写形式。
+- `Capitalize`：将字符串中的第一个字符转换为大写字母。
+- `Uncapitalize`：将字符串中的第一个字符转换为小写字母。
+
+
 ## 一些特性
 
 - TypeScript 只允许类型断言转换为更具体或更不具体的类型版本，这条规则可以防止诸如以下“不可能”的类型强制转换：
@@ -71,6 +105,8 @@ const x = "hello" as number; // error
 ```
 - `as const` 可以将整个对象转换成类型字面量
 - `never` 类型可以赋值给任何类型，但是除了 never 本身之外，没有任何类型可以赋值给 never
+- 泛型：
+  + 当指定类型参数时，只需为必需的类型参数指定类型参数即可。未指定的类型参数将解析为其默认类型
 
 ## 最佳实践
 
