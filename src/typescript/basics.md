@@ -96,6 +96,31 @@ type Concrete<Type> = {
 - `Capitalize`：将字符串中的第一个字符转换为大写字母。
 - `Uncapitalize`：将字符串中的第一个字符转换为小写字母。
 
+## 类构造函数签名和函数签名之间只有几点不同
+
+- 构造函数不能有类型参数——类型参数应该放在外部类声明中
+- 构造函数不能带有返回类型注解——返回值始终是类实例的类型
+
+## 类初始化顺序
+
+1. 父类字段初始化
+2. 父类构造函数运行
+3. 子类字段初始化
+4. 子类构造函数运行
+
+```ts
+class Base {
+  name = "base";
+  constructor() {
+    console.log("My name is " + this.name);
+  }
+}
+class Derived extends Base {
+  name = "derived";
+}
+// Prints "base", not "derived"
+const d = new Derived();
+```
 
 ## 一些特性
 
