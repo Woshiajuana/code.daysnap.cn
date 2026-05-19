@@ -19,17 +19,17 @@
 - symbol
 - null
 - undefined
-- void
-- never
-- unknown
-- any
 
 ## `any`、`unknown`、`never`、`void` 的区别与使用场景？
 
 - `any` 表示任意类型，会关闭静态类型检查
-- `unknown` 表示未知类型，在使用的时候需要进行逻辑判断，将类型收窄
-- `never` 表示不可能出现的类型，一般用于穷尽检查，以及函数抛出异常
-- `void` 表示无返回值类型，一般返回 `undefined` 或没有返回值的函数
+- `unknown` 未知类型，表示任何值，类似于 any 类型，但更安全，因为对 unknown 值进行任何操作都是不合法的。在实际使用的时候需要进行逻辑判断，将类型收窄
+- `never` 表示不可能出现的类型，一般用于穷尽检查，或者函数抛出异常
+- `void` 表示不返回值的函数的返回值
+
+## `object`、`{}`、`Object` 的区别？
+
+特殊类型 object 指的是任何非基本类型（ string 、 number 、 bigint 、 boolean 、 symbol 、 null 或 undefined ）的值。这与空对象类型 { } 不同，也与全局类型 Object 不同。你很可能永远不会用到 Object 。
 
 ## Interface 和 Type 的异同点
 
@@ -47,6 +47,22 @@
 - type 定义的类型别名不能重名
 
 
+## 为什么返回非 void 类型的函数可以赋值给返回 void 类型的函数？
+
+先来看一个例子：
+
+```ts
+let items = [1, 2];
+callMeMaybe(() => items.push(3));
+```
+
+如果不能赋值给返回 void 类型的函数，那么此时会报错。
+
+可以这么理解：返回值为 void 回调类型表示“我不会查看你的返回值（如果有的话）”。
+
+- [参考文档](https://github.com/Microsoft/TypeScript/wiki/FAQ#why-are-functions-returning-non-void-assignable-to-function-returning-void)
+
+
 ## 一些特性
 
 - TypeScript 只允许类型断言转换为更具体或更不具体的类型版本，这条规则可以防止诸如以下“不可能”的类型强制转换：
@@ -60,3 +76,10 @@ const x = "hello" as number; // error
 
 - 如果类型系统最终会推断出相同的类型，那最好不要添加注解
 - 优先使用 interface 定义类型，直到需要使用类型别名特性时再使用 type 定义类型
+- 编写优秀泛型函数的指南 
+  + 尽可能使用类型参数本身，而不是对其进行约束
+  + 尽可能少地使用类型参数
+  + 如果一个类型参数只出现在一个地方，请认真考虑是否真的需要它
+- 编写回调函数类型时，除非打算在不传递参数的情况下调用该函数，否则切勿编写可选​​参数。
+- 尽可能优先选择联合类型的参数，而不是重载类型。
+- `object` 不是 `Object` 。 请始终使用 `object` ！
